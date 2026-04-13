@@ -1024,6 +1024,36 @@ body {
     color: var(--gris-medio);
 }
 
+/* Tracking */
+
+.rastreador-internacional {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title-ras {}
+
+.text-ras {}
+
+.form-rastreador {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-rastreador input {
+    margin: 2%;
+    padding: 10px 10px 10px 10px;
+}
+
+.form-rastreador button {
+    text-align: center;
+    margin: 20px 10px 30px 10px;
+}
+
 /* ========== SECTION: NOTICE CARDS ========== */
 .notices-section {
     padding: 100px 0;
