@@ -1,17 +1,433 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias - EvansLogistic</title>
+    <title>Sala de Prensa — Evans Logistics | Noticias e Innovaciones</title>
+    <meta name="description"
+        content="Últimas noticias, comunicados de prensa e innovaciones de Evans Logistics. Expansión global, tecnología y reconocimientos en el sector logístico.">
     <link href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@4.5.0/index.min.css" rel="stylesheet">
     <link href="../../assets/css/styles.css" rel="stylesheet">
     <link href="../../assets/css/responsive.css" rel="stylesheet">
+    <style>
+        .page-hero {
+            margin-top: 75px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0b74b8 60%, #085a8f 100%);
+            padding: 90px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 50%;
+            top: -150px;
+            right: -100px;
+        }
+
+        .page-hero .breadcrumb {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero .breadcrumb a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero h1 span {
+            color: #60c8f5;
+        }
+
+        .page-hero p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            line-height: 1.75;
+        }
+
+        /* Filter bar */
+        .filter-bar {
+            background: #fff;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+            position: sticky;
+            top: 75px;
+            z-index: 50;
+        }
+
+        .filter-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 9px 22px;
+            border: 2px solid #e0eaf4;
+            background: #fff;
+            color: #7f8c8d;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #0b74b8;
+            border-color: #0b74b8;
+            color: #fff;
+        }
+
+        /* News section */
+        .news-section {
+            padding: 70px 20px;
+            background: #f8f9fa;
+        }
+
+        .news-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Featured article */
+        .news-featured {
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            margin-bottom: 50px;
+            transition: all 0.3s;
+        }
+
+        .news-featured:hover {
+            box-shadow: 0 15px 50px rgba(11, 116, 184, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .featured-img {
+            background: linear-gradient(135deg, #0b74b8, #1a1a2e);
+            min-height: 380px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+        }
+
+        .featured-img-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+        }
+
+        .featured-tag {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: #dd1125;
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .featured-badge {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            padding: 8px 16px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .featured-body {
+            padding: 45px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-date {
+            color: #7f8c8d;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .featured-body h2 {
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: #2c3e50;
+            margin-bottom: 18px;
+            line-height: 1.3;
+        }
+
+        .featured-body p {
+            color: #7f8c8d;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        /* Grid news */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .news-card {
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .news-card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .news-cat {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cat-expansion {
+            background: #e8f4fb;
+            color: #0b74b8;
+        }
+
+        .cat-tech {
+            background: #fff3f4;
+            color: #dd1125;
+        }
+
+        .cat-award {
+            background: #fff8e1;
+            color: #f5a623;
+        }
+
+        .cat-green {
+            background: #f0fff4;
+            color: #27ae60;
+        }
+
+        .cat-alliance {
+            background: #f5f0ff;
+            color: #8e44ad;
+        }
+
+        .cat-ops {
+            background: #e8f7ff;
+            color: #2980b9;
+        }
+
+        .news-card-body {
+            padding: 25px;
+        }
+
+        .news-card-date {
+            color: #7f8c8d;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .news-card-body h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .news-card-body p {
+            color: #7f8c8d;
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .news-card[data-cat] {
+            transition: all 0.3s;
+        }
+
+        .news-card.hidden {
+            display: none;
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1a1a2e, #0d2137);
+            text-align: center;
+        }
+
+        .newsletter-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-section h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-section p {
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .newsletter-input:focus {
+            border-color: #0b74b8;
+        }
+
+        .newsletter-btn {
+            padding: 14px 28px;
+            background: #0b74b8;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .newsletter-btn:hover {
+            background: #085a8f;
+            transform: translateY(-2px);
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer {
+            background: #1a1a2e;
+        }
+
+        @media (max-width:900px) {
+            .news-featured {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-img {
+                min-height: 260px;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width:600px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <nav class="navbar" id="navbar">
         <div class="nav-content">
-            <a href="../../index.html" class="logo"><img src="../../assets/img/EVANS-LOGO-WEB.png" alt="Logo"></a>
+            <a href="../../index.html" class="logo"><img src="../../assets/img/EVANS-LOGO-WEB.png"
+                    alt="Evans Logistics Logo"></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="../../index.html">Inicio</a></li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle">Servicios</a>
@@ -28,92 +444,218 @@
                         <li><a href="../nosotros/quienes-somos.html">Quiénes Somos</a></li>
                         <li><a href="../nosotros/equipo.html">Nuestro Equipo</a></li>
                         <li><a href="../nosotros/historia.html">Historia</a></li>
-                        <li><a href="#">Certificaciones</a></li>
                     </ul>
                 </li>
                 <li><a href="../proveedores.html">Proveedores</a></li>
-                <li><a href="../../index.html" class="active">Noticias</a></li>
+                <li><a href="index.html" class="active">Noticias</a></li>
                 <li><a href="../contacto.html" class="btn-cta">Contacto</a></li>
             </ul>
             <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
+    <!-- HERO -->
+    <section class="page-hero">
+        <div class="breadcrumb"><a href="../../index.html">Inicio</a> / <strong style="color:#fff;">Sala de
+                Prensa</strong></div>
+        <h1>📰 Sala de <span>Prensa</span></h1>
+        <p>Las últimas novedades, logros y estrategias que están posicionando a Evans Logistics como el referente
+            logístico más innovador de América Latina.</p>
+    </section>
 
-    <section class="section">
-        <div class="container">
-            <h1>Últimas Noticias</h1>
-            <div class="notices-grid">
-                <div class="notice-card animate-on-scroll">
-                    <div class="notice-img" style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/18c4c4211-9669-424f-b538-23b7b3dcda3e.png');"><span class="notice-tag">Expansión</span></div>
-                    <div class="notice-body">
-                        <span class="notice-date">📅 15 Enero, 2025</span>
-                        <h3>EvansLogistic amplía cobertura a 15 nuevos países</h3>
-                        <p>Nuestra red de distribución se expande para ofrecer un servicio más completo en América Latina y Europa.</p>
-                        <a href="detalle.html" class="btn-link">Leer más →</a>
+    <!-- FILTER BAR -->
+
+
+    <!-- NEWS SECTION -->
+    <section class="news-section">
+        <div class="news-inner">
+
+            <!-- Featured -->
+            <div class="news-featured animate-on-scroll" data-cat="expansion">
+                <div class="featured-img" style="background: linear-gradient(135deg,#0b74b8,#1a1a2e);">
+                    <div class="featured-img-bg"
+                        style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/18c4c4211-9669-424f-b538-23b7b3dcda3e.png');">
+                    </div>
+                    <span class="featured-tag">Expansión Global</span>
+                    <div class="featured-badge">📌 Noticia Destacada</div>
+                </div>
+                <div class="featured-body">
+                    <span class="featured-date">📅 15 de Enero, 2025</span>
+                    <h2>Evans Logistics consolida su presencia en 15 nuevos mercados estratégicos</h2>
+                    <p>En respuesta al crecimiento sostenido de la demanda en América Latina y Europa, hemos formalizado
+                        alianzas estratégicas en 15 países, reforzando nuestra Red de Distribución Internacional con
+                        hubs logísticos en ciudades clave como Ciudad de México, Bogotá, Madrid y Rotterdam.</p>
+                    <a href="detalle.html" class="btn btn-primary">Leer Comunicado Completo →</a>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div class="news-grid">
+                <div class="news-card animate-on-scroll" data-cat="tech">
+                    <div class="news-card-img"
+                        style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/1f0f63edd-3319-4556-9f61-9c5a8d7bd24d.png');">
+                        <span class="news-cat cat-tech">Tecnología</span>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-card-date">📅 8 Enero, 2025</span>
+                        <h3>Lanzamos "Evans Tech Platform": visibilidad total de tu cadena de suministro</h3>
+                        <p>Nuestra plataforma de próxima generación integra inteligencia artificial, IoT y big data para
+                            ofrecer monitoreo predictivo en tiempo real accesible desde cualquier dispositivo.</p>
+                        <a href="detalle.html" class="btn-link">Explorar la Plataforma →</a>
                     </div>
                 </div>
-                <div class="notice-card animate-on-scroll">
-                    <div class="notice-img" style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/1f0f63edd-3319-4556-9f61-9c5a8d7bd24d.png');"><span class="notice-tag">Tecnología</span></div>
-                    <div class="notice-body">
-                        <span class="notice-date">📅 8 Enero, 2025</span>
-                        <h3>Nueva plataforma de rastreo en tiempo real</h3>
-                        <p>Implementamos un sistema de seguimiento avanzado para monitorear tu carga 24/7.</p>
-                        <a href="detalle.html" class="btn-link">Leer más →</a>
+
+                <div class="news-card animate-on-scroll" data-cat="award">
+                    <div class="news-card-img"
+                        style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/13c423d17-7dab-4824-aa36-a0b17e27ad47.png');">
+                        <span class="news-cat cat-award">Reconocimiento</span>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-card-date">📅 28 Diciembre, 2024</span>
+                        <h3>Premio "Empresa Logística Más Innovadora del Año 2024" — Cámara de Comercio Internacional
+                        </h3>
+                        <p>Un reconocimiento a nuestra transformación digital, expansión de cobertura y nivel histórico
+                            de satisfacción de clientes a nivel regional.</p>
+                        <a href="detalle.html" class="btn-link">Ver el Galardón →</a>
                     </div>
                 </div>
-                <div class="notice-card animate-on-scroll">
-                    <div class="notice-img" style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/13c423d17-7dab-4824-aa36-a0b17e27ad47.png');"><span class="notice-tag">Premio</span></div>
-                    <div class="notice-body">
-                        <span class="notice-date">📅 28 Diciembre, 2024</span>
-                        <h3>Premio a la Excelencia Logística 2024</h3>
-                        <p>Reconocidos como la empresa logística más innovadora del año.</p>
-                        <a href="detalle.html" class="btn-link">Leer más →</a>
+
+                <div class="news-card animate-on-scroll" data-cat="green">
+                    <div class="news-card-img"
+                        style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/1209a8ace-7dac-42a6-829f-99b4226fc84d.png');">
+                        <span class="news-cat cat-green">Sostenibilidad</span>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-card-date">📅 15 Diciembre, 2024</span>
+                        <h3>Incorporamos 50 unidades eléctricas a nuestra flota como parte de la Estrategia ESG 2025
+                        </h3>
+                        <p>Avanzamos en nuestra hoja de ruta de descarbonización con la mayor incorporación de vehículos
+                            eléctricos en la historia de la empresa, reduciendo nuestra huella de carbono en un 18%.</p>
+                        <a href="detalle.html" class="btn-link">Ver Estrategia ESG →</a>
                     </div>
                 </div>
-                <div class="notice-card animate-on-scroll">
-                    <div class="notice-img" style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/1209a8ace-7dac-42a6-829f-99b4226fc84d.png');"><span class="notice-tag">Sostenibilidad</span></div>
-                    <div class="notice-body">
-                        <span class="notice-date">📅 15 Diciembre, 2024</span>
-                        <h3>Flota eléctrica: 50 camiones nuevos eco-friendly</h3>
-                        <p>Incorporamos camiones eléctricos a nuestra flota como parte de nuestro compromiso ambiental.</p>
-                        <a href="detalle.html" class="btn-link">Leer más →</a>
+
+                <div class="news-card animate-on-scroll" data-cat="ops">
+                    <div class="news-card-img"
+                        style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/1c13213f9-c513-48dd-8d6a-6841458f6155.png');">
+                        <span class="news-cat cat-ops">Infraestructura</span>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-card-date">📅 1 Diciembre, 2024</span>
+                        <h3>Inauguramos nuestro centro de distribución más grande: 25,000 m² en Ciudad de Panamá</h3>
+                        <p>Las nuevas instalaciones cuentan con sistema WMS de última generación, zonas de temperatura
+                            controlada y capacidad para procesar hasta 8,000 SKUs diarios con tecnología automatizada.
+                        </p>
+                        <a href="detalle.html" class="btn-link">Ver el Centro →</a>
                     </div>
                 </div>
-                <div class="notice-card animate-on-scroll">
-                    <div class="notice-img" style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/1c13213f9-c513-48dd-8d6a-6841458f6155.png');"><span class="notice-tag">Almacén</span></div>
-                    <div class="notice-body">
-                        <span class="notice-date">📅 1 Diciembre, 2024</span>
-                        <h3>Nuevo centro de distribución en la costa este</h3>
-                        <p>Inauguramos nuestro almacén más grande con 20,000m² de capacidad en la costa este.</p>
-                        <a href="detalle.html" class="btn-link">Leer más →</a>
+
+                <div class="news-card animate-on-scroll" data-cat="alliance">
+                    <div class="news-card-img"
+                        style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/17f852324-3b8b-4369-bf39-1002ef48a0f0.png');">
+                        <span class="news-cat cat-alliance">Alianzas</span>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-card-date">📅 20 Noviembre, 2024</span>
+                        <h3>Acuerdo estratégico con Maersk amplía nuestra capacidad marítima en el Pacífico</h3>
+                        <p>El nuevo convenio de cooperación con Maersk Line nos brinda prioridad en reservas de espacio,
+                            tarifas preferenciales y acceso a terminales exclusivas en los principales puertos del
+                            Pacífico.</p>
+                        <a href="detalle.html" class="btn-link">Leer el Acuerdo →</a>
                     </div>
                 </div>
-                <div class="notice-card animate-on-scroll">
-                    <div class="notice-img" style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/17f852324-3b8b-4369-bf39-1002ef48a0f0.png');"><span class="notice-tag">Alianza</span></div>
-                    <div class="notice-body">
-                        <span class="notice-date">📅 20 Noviembre, 2024</span>
-                        <h3>Nueva alianza con Amazon Logistics</h3>
-                        <p>Firmamos acuerdo estratégico para manejar la logística de última milla en 5 países.</p>
-                        <a href="detalle.html" class="btn-link">Leer más →</a>
+
+                <div class="news-card animate-on-scroll" data-cat="tech">
+                    <div class="news-card-img"
+                        style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/1b39a98e8-4cbe-4159-ba8c-6af099a5b3fe.png');">
+                        <span class="news-cat cat-tech">Tecnología</span>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-card-date">📅 5 Noviembre, 2024</span>
+                        <h3>Implementamos IA predictiva para anticipar disrupciones en las cadenas de suministro</h3>
+                        <p>Nuestro nuevo motor de inteligencia artificial analiza más de 200 variables en tiempo real
+                            para alertar proactivamente a los clientes sobre posibles retrasos y proponer rutas
+                            alternativas optimizadas.</p>
+                        <a href="detalle.html" class="btn-link">Conocer la IA →</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section">
+        <div class="newsletter-inner">
+            <h2>📬 Mantente Informado</h2>
+            <p>Recibe en tu correo las últimas noticias, reportes de tendencias logísticas y actualizaciones exclusivas
+                de Evans Logistics cada semana.</p>
+            <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                <input type="email" class="newsletter-input" placeholder="Tu correo corporativo" required>
+                <button type="submit" class="newsletter-btn">Suscribirme →</button>
+            </form>
+        </div>
+    </section>
+
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand"><h3>Evans<span>Logistic</span></h3><p>Soluciones integrales de logística.</p></div>
-                <div class="footer-col"><h4>Nosotros</h4><ul class="footer-links"><li><a href="../nosotros/quienes-somos.html">Quiénes Somos</a></li><li><a href="../nosotros/equipo.html">Nuestro Equipo</a></li></ul></div>
-                <div class="footer-col"><h4>Servicios</h4><ul class="footer-links"><li><a href="../servicios/transporte-terrestre.html">Transporte Terrestre</a></li><li><a href="../servicios/transporte-aereo.html">Transporte Aéreo</a></li></ul></div>
-                <div class="footer-col"><h4>Contacto</h4><div class="footer-contact-item"><span class="footer-contact-icon">📞</span><div class="footer-contact-text"><strong>Teléfono</strong>+1 (555) 123-4567</div></div></div>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Evans<span>Logistic</span></h3>
+                <p>Conectamos empresas con el mundo desde Panamá.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Noticias</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Sala de Prensa</a></li>
+                    <li><a href="detalle.html">Últimas Noticias</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Servicios</h4>
+                <ul class="footer-links">
+                    <li><a href="../servicios/transporte-terrestre.html">Transporte Terrestre</a></li>
+                    <li><a href="../servicios/transporte-aereo.html">Transporte Aéreo</a></li>
+                    <li><a href="../servicios/transporte-maritimo.html">Transporte Marítimo</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <div class="footer-contact-item"><span class="footer-contact-icon">📞</span>
+                    <div class="footer-contact-text"><strong>Línea Comercial</strong>+507 6750-2610</div>
+                </div>
+                <div class="footer-contact-item"><span class="footer-contact-icon">✉️</span>
+                    <div class="footer-contact-text"><strong>Correo</strong>jennifer.evans@grupoevanslogistics.com</div>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom"><p>&copy; 2025 <a href="../../index.html">EvansLogistic</a>. Todos los derechos reservados.</p></div>
+        <div class="footer-bottom">
+            <p>© 2025 <a href="../../index.html">Evans Logistics Group</a>. Todos los derechos reservados.</p>
+        </div>
     </footer>
-    <button class="scroll-top" id="scrollTop">↑</button>
-    <script src="../../assets/js/main.js"></script>
+
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); document.getElementById('scrollTop').style.display = window.scrollY > 400 ? 'flex' : 'none'; });
+        document.getElementById('scrollTop').style.display = 'none';
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('animated'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('active'); navLinks.classList.toggle('open'); });
+        document.querySelectorAll('.dropdown').forEach(d => {
+            d.querySelector('.dropdown-toggle').addEventListener('click', e => { if (window.innerWidth <= 768) { e.preventDefault(); d.classList.toggle('open'); } });
+        });
+
+
+
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.textContent = '✅ ¡Suscrito!';
+            btn.style.background = '#27ae60';
+            setTimeout(() => { btn.textContent = 'Suscribirme →'; btn.style.background = '#0b74b8'; e.target.reset(); }, 3000);
+        }
+    </script>
 </body>
+
 </html>

@@ -1,28 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transporte Marítimo - EvansLogistic</title>
+    <title>Transporte Marítimo — Evans Logistics | FCL, LCL y Contenedores Globales</title>
+    <meta name="description" content="Servicios de transporte marítimo FCL y LCL con las principales navieras del mundo: Maersk, MSC, CMA CGM, Hapag-Lloyd. Evans Logistics garantiza cobertura en más de 500 puertos.">
     <link href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@4.5.0/index.min.css" rel="stylesheet">
     <link href="../../assets/css/styles.css" rel="stylesheet">
     <link href="../../assets/css/responsive.css" rel="stylesheet">
-</head>
+    <style>
+        .page-hero { margin-top:75px; background:linear-gradient(135deg,#0d2137 0%,#085a8f 55%,#0b74b8 100%); padding:90px 20px 80px; text-align:center; position:relative; overflow:hidden; }
+        .page-hero::before { content:''; position:absolute; width:600px; height:600px; background:rgba(255,255,255,0.04); border-radius:50%; bottom:-200px; left:-150px; }
+        .page-hero::after  { content:''; position:absolute; width:400px; height:400px; background:rgba(11,116,184,0.2); border-radius:50%; top:-100px; right:-80px; }
+        .breadcrumb { position:relative; z-index:2; color:rgba(255,255,255,0.6); font-size:13px; margin-bottom:20px; }
+        .breadcrumb a { color:rgba(255,255,255,0.7); text-decoration:none; }
+        .page-hero h1 { position:relative; z-index:2; font-size:3rem; font-weight:900; color:#fff; margin-bottom:18px; line-height:1.15; }
+        .page-hero h1 span { color:#7dd8ff; }
+        .page-hero p { position:relative; z-index:2; font-size:1.1rem; color:rgba(255,255,255,0.82); max-width:700px; margin:0 auto 35px; line-height:1.75; }
+        .hero-btns { position:relative; z-index:2; display:flex; gap:15px; justify-content:center; flex-wrap:wrap; }
 
+        /* Metrics */
+        .metrics-band { background:linear-gradient(90deg,#0b74b8,#085a8f); padding:48px 20px; }
+        .metrics-inner { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1000px; margin:0 auto; text-align:center; }
+        .metric-item { color:#fff; padding:10px; border-right:1px solid rgba(255,255,255,0.15); }
+        .metric-item:last-child { border-right:none; }
+        .metric-number { font-size:2.5rem; font-weight:900; line-height:1; margin-bottom:6px; }
+        .metric-label { font-size:12px; opacity:0.75; text-transform:uppercase; letter-spacing:1.5px; }
+
+        /* Main highlight */
+        .highlights-section { padding:90px 20px; background:#fff; }
+        .highlights-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; max-width:1100px; margin:0 auto; }
+        .highlights-img { border-radius:22px; overflow:hidden; height:440px; position:relative; }
+        .highlights-img img { width:100%; height:100%; object-fit:cover; }
+        .highlights-img-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(8,90,143,0.35),rgba(13,33,55,0.3)); }
+        .img-badge { position:absolute; bottom:25px; right:-15px; background:linear-gradient(135deg,#0b74b8,#085a8f); color:#fff; padding:18px 26px; border-radius:14px; text-align:center; box-shadow:0 12px 30px rgba(11,116,184,0.4); }
+        .img-badge .num { font-size:2.2rem; font-weight:900; line-height:1; }
+        .img-badge .txt { font-size:11px; text-transform:uppercase; letter-spacing:1px; opacity:.9; }
+        .highlights-text h2 { font-size:2.4rem; font-weight:900; color:#2c3e50; margin-bottom:15px; line-height:1.2; }
+        .highlights-text h2 span { color:#0b74b8; }
+        .highlights-text p { color:#7f8c8d; line-height:1.8; margin-bottom:18px; }
+        .features-list { list-style:none; margin-bottom:30px; }
+        .features-list li { display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid #f0f4f8; font-size:0.95rem; color:#2c3e50; font-weight:600; }
+        .check-circle { width:28px; height:28px; border-radius:50%; background:#e8f4fb; color:#0b74b8; display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; font-weight:700; }
+
+        /* Container options */
+        .containers-section { padding:90px 20px; background:#f8f9fa; }
+        .section-center { text-align:center; margin-bottom:50px; max-width:1100px; margin-left:auto; margin-right:auto; }
+        .containers-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; max-width:1100px; margin:0 auto; }
+        .container-card { background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.07); transition:all 0.3s; border-top:4px solid #0b74b8; }
+        .container-card:nth-child(2) { border-top-color:#085a8f; }
+        .container-card:nth-child(3) { border-top-color:#2c3e50; }
+        .container-card:hover { transform:translateY(-8px); box-shadow:0 15px 40px rgba(11,116,184,0.15); }
+        .card-icon-wrap { padding:30px 30px 0; }
+        .card-icon { width:60px; height:60px; border-radius:14px; background:#e8f4fb; display:flex; align-items:center; justify-content:center; font-size:1.8rem; margin-bottom:18px; }
+        .container-card h3 { font-size:1.2rem; font-weight:900; color:#2c3e50; margin-bottom:6px; padding:0 30px; }
+        .container-card .cap { font-size:12px; color:#7f8c8d; padding:0 30px 20px; text-transform:uppercase; letter-spacing:1px; font-weight:600; }
+        .card-divider { height:1px; background:#f0f4f8; margin:0 30px; }
+        .container-card p { color:#7f8c8d; line-height:1.7; font-size:0.92rem; padding:20px 30px; }
+        .card-specs { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:0 30px 25px; }
+        .spec-item { background:#f8f9fa; border-radius:10px; padding:12px; text-align:center; }
+        .spec-val { font-size:1.1rem; font-weight:900; color:#0b74b8; }
+        .spec-lbl { font-size:10px; color:#7f8c8d; text-transform:uppercase; letter-spacing:1px; margin-top:2px; }
+        .card-cta { padding:0 30px 30px; }
+
+        /* Partners */
+        .partners-section { padding:80px 20px; background:#fff; }
+        .partners-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; max-width:1000px; margin:40px auto 0; }
+        .partner-badge { border:2px solid #e0eaf4; border-radius:16px; padding:28px 20px; text-align:center; transition:all 0.3s; }
+        .partner-badge:hover { border-color:#0b74b8; background:#e8f4fb; transform:translateY(-4px); box-shadow:0 10px 25px rgba(11,116,184,0.1); }
+        .partner-name { font-size:1.4rem; font-weight:900; color:#0b74b8; margin-bottom:6px; }
+        .partner-desc { font-size:12px; color:#7f8c8d; }
+
+        /* CTA */
+        .service-cta { padding:90px 20px; background:linear-gradient(135deg,#0d2137,#1a1a2e); text-align:center; }
+        .service-cta h2 { font-size:2.4rem; font-weight:900; color:#fff; margin-bottom:15px; }
+        .service-cta h2 span { color:#7dd8ff; }
+        .service-cta p { color:rgba(255,255,255,0.75); max-width:600px; margin:0 auto 35px; line-height:1.7; }
+        .cta-group { display:flex; gap:15px; justify-content:center; flex-wrap:wrap; }
+        .btn-ocean { padding:15px 36px; background:#0b74b8; color:#fff; border-radius:10px; font-weight:800; font-size:15px; text-decoration:none; transition:all 0.3s; }
+        .btn-ocean:hover { background:#085a8f; transform:translateY(-3px); box-shadow:0 10px 25px rgba(11,116,184,0.5); }
+        .btn-ghost { padding:15px 36px; background:transparent; color:#fff; border:2px solid rgba(255,255,255,0.35); border-radius:10px; font-weight:700; font-size:15px; text-decoration:none; transition:all 0.3s; }
+        .btn-ghost:hover { border-color:#fff; background:rgba(255,255,255,0.08); }
+
+        .footer { background:#1a1a2e; }
+        .animate-on-scroll { opacity:0; transform:translateY(30px); transition:opacity 0.7s ease, transform 0.7s ease; }
+        .animate-on-scroll.animated { opacity:1; transform:translateY(0); }
+
+        @media (max-width:900px) { .highlights-grid { grid-template-columns:1fr; } .metrics-inner { grid-template-columns:1fr 1fr; } .containers-grid { grid-template-columns:1fr; } .partners-grid { grid-template-columns:1fr 1fr; } .page-hero h1 { font-size:2.2rem; } }
+    </style>
+</head>
 <body>
     <nav class="navbar" id="navbar">
         <div class="nav-content">
-            <a href="../../index.html" class="logo"><img src="../../assets/img/EVANS-LOGO-WEB.png" alt="Logo"></a>
+            <a href="../../index.html" class="logo"><img src="../../assets/img/EVANS-LOGO-WEB.png" alt="Evans Logistics Logo"></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="../../index.html">Inicio</a></li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle active">Servicios</a>
                     <ul class="dropdown-menu">
-                        <li><a href="../servicios/transporte-terrestre.html">🚛 Transporte Terrestre</a></li>
-                        <li><a href="../servicios/transporte-aereo.html">✈️ Transporte Aéreo</a></li>
-                        <li><a href="../servicios/transporte-maritimo.html">🚢 Transporte Marítimo</a></li>
-                        <li><a href="../servicios/almacenamiento.html">📦 Almacenamiento</a></li>
-                        <li><a href="../servicios/logistica-internacional.html">🌍 Logística Internacional</a></li>
+                        <li><a href="transporte-terrestre.html">🚛 Transporte Terrestre</a></li>
+                        <li><a href="transporte-aereo.html">✈️ Transporte Aéreo</a></li>
+                        <li><a href="transporte-maritimo.html">🚢 Transporte Marítimo</a></li>
+                        <li><a href="almacenamiento.html">📦 Almacenamiento</a></li>
+                        <li><a href="logistica-internacional.html">🌍 Logística Internacional</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle">Nosotros</a>
@@ -30,7 +109,6 @@
                         <li><a href="../nosotros/quienes-somos.html">Quiénes Somos</a></li>
                         <li><a href="../nosotros/equipo.html">Nuestro Equipo</a></li>
                         <li><a href="../nosotros/historia.html">Historia</a></li>
-                        <li><a href="#">Certificaciones</a></li>
                     </ul>
                 </li>
                 <li><a href="../proveedores.html">Proveedores</a></li>
@@ -41,110 +119,175 @@
         </div>
     </nav>
 
+    <section class="page-hero">
+        <div class="breadcrumb"><a href="../../index.html">Inicio</a> / <a href="#">Servicios</a> / <strong style="color:#fff;">Transporte Marítimo</strong></div>
+        <h1>🚢 Transporte Marítimo<br><span>de Gran Escala y Alcance Global</span></h1>
+        <p>Gestionamos el movimiento de grandes volúmenes de carga en más de 500 puertos del mundo. Con opciones FCL y LCL altamente competitivas y alianzas con las navieras líderes del planeta, tu mercancía navega con la mayor seguridad y eficiencia posible.</p>
+        <div class="hero-btns">
+            <a href="../cotizacion.html" class="btn btn-primary">Solicitar Cotización</a>
+            <a href="../contacto.html" class="btn btn-secondary">Hablar con un Experto</a>
+        </div>
+    </section>
 
+    <div class="metrics-band">
+        <div class="metrics-inner">
+            <div class="metric-item animate-on-scroll"><div class="metric-number">500+</div><div class="metric-label">Puertos Cubiertos</div></div>
+            <div class="metric-item animate-on-scroll"><div class="metric-number">FCL & LCL</div><div class="metric-label">Modalidades</div></div>
+            <div class="metric-item animate-on-scroll"><div class="metric-number">4</div><div class="metric-label">Navieras Aliadas Top</div></div>
+            <div class="metric-item animate-on-scroll"><div class="metric-number">100%</div><div class="metric-label">Tracking Online</div></div>
+        </div>
+    </div>
 
-    <section class="service-content">
-        <div class="container">
-            <h1>🚢 Transporte Marítimo</h1>
-            <div class="service-content-grid animate-on-scroll">
-                <div class="service-content-img">
-                    <div class="service-content-img-bg"
-                        style="background-image: url('https://image.qwenlm.ai/public_source/1d270d1b-6223-42a8-a9c5-f6b1acf0f0ba/106d277fa-3d8f-4160-96e9-c7451e171270.png'); background-size:cover; background-position:center; width:100%; height:100%; border-radius:20px;">
-                    </div>
+    <section class="highlights-section">
+        <div class="highlights-grid">
+            <div class="highlights-img animate-on-scroll">
+                <img src="../../assets/img/Desenbarcomaritimo.jpeg" alt="Transporte Marítimo Evans Logistics">
+                <div class="highlights-img-overlay"></div>
+                <div class="img-badge">
+                    <div class="num">50+</div>
+                    <div class="txt">Países<br>Conectados</div>
                 </div>
-                <div class="service-content-text">
-                    <h2>Envíos por Contenedor <span>a Todo el Mundo</span></h2>
-                    <p>Servicios de carga marítima con las principales navieras del mundo. Contenedores completos (FCL)
-                        y consolidados (LCL).</p>
-                    <ul class="service-features-list">
-                        <li><span class="check-icon">✓</span> FCL y LCL disponibles</li>
-                        <li><span class="check-icon">✓</span> +500 puertos en todo el mundo</li>
-                        <li><span class="check-icon">✓</span> Despacho aduanero completo</li>
-                        <li><span class="check-icon">✓</span> Alianzas con Maersk, MSC, CMA CGM</li>
-                        <li><span class="check-icon">✓</span> Seguro marítimo integral</li>
-                        <li><span class="check-icon">✓</span> Tracking de contenedores en línea</li>
-                    </ul>
-
-                </div>
+            </div>
+            <div class="highlights-text animate-on-scroll">
+                <span class="section-tag">Líderes en Carga Marítima</span>
+                <h2>Conectamos tus Productos con <span>los Mercados del Mundo</span></h2>
+                <p>Nuestra división marítima es el corazón de las operaciones de importación y exportación de cientos de empresas en América Latina. Combinamos acuerdos preferenciales con las navieras más grandes del mundo, con la gestión documental y aduanera más eficiente del mercado.</p>
+                <p>Seas importador, exportador o necesites consolidar carga de distintos orígenes, Evans Logistics diseña la solución marítima ideal para tu negocio: óptima en costo, puntual en tiempo y sin sorpresas.</p>
+                <ul class="features-list">
+                    <li><span class="check-circle">✓</span> Contenedores completos (FCL) e importaciones consolidadas (LCL)</li>
+                    <li><span class="check-circle">✓</span> Despacho aduanero y trámites de importación/exportación</li>
+                    <li><span class="check-circle">✓</span> Seguimiento de contenedor en tiempo real desde nuestra plataforma</li>
+                    <li><span class="check-circle">✓</span> Aliados: Maersk, CMA CGM, MSC, Hapag-Lloyd</li>
+                    <li><span class="check-circle">✓</span> Cobertura en +500 puertos en 5 continentes</li>
+                    <li><span class="check-circle">✓</span> Seguro marítimo integral con cobertura todo riesgo</li>
+                </ul>
+                <a href="../cotizacion.html" class="btn btn-primary">Cotizar Envío Marítimo</a>
             </div>
         </div>
     </section>
 
-    <section class="section section-alt">
-        <div class="container">
+    <section class="containers-section">
+        <div class="section-center animate-on-scroll">
+            <span class="section-tag">Opciones de Contenedor</span>
+            <h2 class="section-title">La Solución Exacta <span>para tu Volumen</span></h2>
+            <p class="section-subtitle">Ofrecemos todas las modalidades de contenedor para que encuentres el equilibrio perfecto entre capacidad, costo y tiempo de tránsito.</p>
+        </div>
+        <div class="containers-grid">
+            <div class="container-card animate-on-scroll">
+                <div class="card-icon-wrap">
+                    <div class="card-icon">📦</div>
+                </div>
+                <h3>Contenedor 20 pies (FCL)</h3>
+                <div class="cap">Carga Completa · TEU Estándar</div>
+                <div class="card-divider"></div>
+                <p>La solución más ágil para cargas medianas que necesitan un transporte exclusivo. Tránsito directo sin transbordos, con booking prioritario.</p>
+                <div class="card-specs">
+                    <div class="spec-item"><div class="spec-val">33 m³</div><div class="spec-lbl">Capacidad</div></div>
+                    <div class="spec-item"><div class="spec-val">28 ton</div><div class="spec-lbl">Peso máximo</div></div>
+                </div>
+                <div class="card-cta"><a href="../cotizacion.html" class="btn-link">Cotizar 20' FCL →</a></div>
+            </div>
+            <div class="container-card animate-on-scroll">
+                <div class="card-icon-wrap">
+                    <div class="card-icon" style="background:#e8f7ff;">🛳️</div>
+                </div>
+                <h3>Contenedor 40 pies (FCL)</h3>
+                <div class="cap">Carga Completa · Gran Volumen</div>
+                <div class="card-divider"></div>
+                <p>Para grandes volúmenes industriales o comerciales. Doble capacidad de carga con la misma protección y trazabilidad que caracteriza a Evans Logistics.</p>
+                <div class="card-specs">
+                    <div class="spec-item"><div class="spec-val">67 m³</div><div class="spec-lbl">Capacidad</div></div>
+                    <div class="spec-item"><div class="spec-val">26 ton</div><div class="spec-lbl">Peso máximo</div></div>
+                </div>
+                <div class="card-cta"><a href="../cotizacion.html" class="btn-link">Cotizar 40' FCL →</a></div>
+            </div>
+            <div class="container-card animate-on-scroll">
+                <div class="card-icon-wrap">
+                    <div class="card-icon" style="background:#f0fff4;">🔀</div>
+                </div>
+                <h3>Consolidado (LCL)</h3>
+                <div class="cap">Carga Parcial · Pago por Espacio</div>
+                <div class="card-divider"></div>
+                <p>La opción inteligente para exportadores con volúmenes menores a un contenedor completo. Comparte espacio, reduce costos y mantén la frecuencia de envíos.</p>
+                <div class="card-specs">
+                    <div class="spec-item"><div class="spec-val">½ m³</div><div class="spec-lbl">Mínimo</div></div>
+                    <div class="spec-item"><div class="spec-val">-40%</div><div class="spec-lbl">Ahorro vs FCL</div></div>
+                </div>
+                <div class="card-cta"><a href="../cotizacion.html" class="btn-link">Cotizar LCL →</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="partners-section">
+        <div style="max-width:1000px; margin:0 auto; text-align:center;">
             <div class="section-header animate-on-scroll">
-                <span class="section-tag">Tipos de Contenedores</span>
-                <h2 class="section-title">Opciones de <span>Envío</span></h2>
+                <span class="section-tag">Navieras Aliadas</span>
+                <h2 class="section-title">Respaldados por los <span>Gigantes del Mar</span></h2>
+                <p class="section-subtitle">Nuestras alianzas estratégicas con las principales navieras del mundo nos garantizan prioridad de booking, tarifas competitivas y acceso a las mejores rutas marítimas globales.</p>
             </div>
-            <div class="cards-grid">
-                <div class="service-card animate-on-scroll">
-                    <div class="service-body">
-                        <h3>Contenedor 20 pies</h3>
-                        <p>Ideal para cargas medianas. Capacidad de 33m³ y hasta 28 toneladas.</p><a
-                            href="../cotizacion.html" class="btn-link">Cotizar →</a>
-                    </div>
+            <div class="partners-grid">
+                <div class="partner-badge animate-on-scroll">
+                    <div class="partner-name">MAERSK</div>
+                    <div class="partner-desc">N°1 mundial en contenedores</div>
                 </div>
-                <div class="service-card animate-on-scroll">
-                    <div class="service-body">
-                        <h3>Contenedor 40 pies</h3>
-                        <p>Para grandes volúmenes. Capacidad de 67m³ y hasta 26 toneladas.</p><a
-                            href="../cotizacion.html" class="btn-link">Cotizar →</a>
-                    </div>
+                <div class="partner-badge animate-on-scroll">
+                    <div class="partner-name">MSC</div>
+                    <div class="partner-desc">Mediterranean Shipping Co.</div>
                 </div>
-                <div class="service-card animate-on-scroll">
-                    <div class="service-body">
-                        <h3>Consolidado LCL</h3>
-                        <p>Comparte contenedor con otros envíos. Perfecto para cargas parciales.</p><a
-                            href="../cotizacion.html" class="btn-link">Cotizar →</a>
-                    </div>
+                <div class="partner-badge animate-on-scroll">
+                    <div class="partner-name">CMA CGM</div>
+                    <div class="partner-desc">3ra flota naviera mundial</div>
+                </div>
+                <div class="partner-badge animate-on-scroll">
+                    <div class="partner-name">HAPAG</div>
+                    <div class="partner-desc">Hapag-Lloyd · Líder en Europa</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="cta-banner">
-        <div class="container animate-on-scroll">
-            <h2>Envíos Marítimos a Todo el Mundo</h2>
-            <p>Conexiones con los principales puertos de América, Europa y Asia.</p>
-            <a href="../cotizacion.html" class="btn btn-primary">Cotizar Ahora</a>
+    <section class="service-cta">
+        <h2>¿Tu Carga Necesita <span>Cruzar el Océano</span>?</h2>
+        <p>Nuestro equipo marítimo coordina tu envío de principio a fin: desde el booking del contenedor hasta la entrega en destino. Solicita tu cotización y recibe una propuesta en menos de 4 horas.</p>
+        <div class="cta-group">
+            <a href="../cotizacion.html" class="btn-ocean">📋 Solicitar Cotización Marítima</a>
+            <a href="../contacto.html" class="btn-ghost">💬 Hablar con un Especialista</a>
         </div>
     </section>
 
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>Evans<span>Logistic</span></h3>
-                    <p>Soluciones integrales de logística.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Servicios</h4>
-                    <ul class="footer-links">
-                        <li><a href="transporte-terrestre.html">Transporte Terrestre</a></li>
-                        <li><a href="transporte-aereo.html">Transporte Aéreo</a></li>
-                        <li><a href="transporte-maritimo.html">Transporte Marítimo</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Empresa</h4>
-                    <ul class="footer-links">
-                        <li><a href="../nosotros/quienes-somos.html">Sobre Nosotros</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contacto</h4>
-                    <div class="footer-contact-item"><span class="footer-contact-icon">📞</span>
-                        <div class="footer-contact-text"><strong>Teléfono</strong>+1 (555) 123-4567</div>
-                    </div>
-                </div>
+        <div class="footer-grid">
+            <div class="footer-brand"><h3>Evans<span>Logistic</span></h3><p>Conectamos empresas con el mundo desde Panamá.</p></div>
+            <div class="footer-col"><h4>Servicios</h4><ul class="footer-links">
+                <li><a href="transporte-terrestre.html">Transporte Terrestre</a></li>
+                <li><a href="transporte-aereo.html">Transporte Aéreo</a></li>
+                <li><a href="transporte-maritimo.html">Transporte Marítimo</a></li>
+                <li><a href="almacenamiento.html">Almacenamiento</a></li>
+                <li><a href="logistica-internacional.html">Logística Internacional</a></li>
+            </ul></div>
+            <div class="footer-col"><h4>Empresa</h4><ul class="footer-links">
+                <li><a href="../nosotros/quienes-somos.html">Quiénes Somos</a></li>
+                <li><a href="../noticias/index.html">Noticias</a></li>
+                <li><a href="../proveedores.html">Proveedores</a></li>
+            </ul></div>
+            <div class="footer-col"><h4>Contacto</h4>
+                <div class="footer-contact-item"><span class="footer-contact-icon">📍</span><div class="footer-contact-text"><strong>Sede Principal</strong>The Century Tower, Piso 16, Ciudad de Panamá</div></div>
+                <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><div class="footer-contact-text"><strong>Línea Comercial</strong>+507 6750-2610</div></div>
+                <div class="footer-contact-item"><span class="footer-contact-icon">✉️</span><div class="footer-contact-text"><strong>Correo</strong>jennifer.evans@grupoevanslogistics.com</div></div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 <a href="../../index.html">EvansLogistic</a>. Todos los derechos reservados.</p>
-        </div>
+        <div class="footer-bottom"><p>© 2025 <a href="../../index.html">Evans Logistics Group</a>. Todos los derechos reservados.</p></div>
     </footer>
-    <button class="scroll-top" id="scrollTop">↑</button>
-    <script src="../../assets/js/main.js"></script>
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); document.getElementById('scrollTop').style.display = window.scrollY > 400 ? 'flex' : 'none'; });
+        document.getElementById('scrollTop').style.display = 'none';
+        const obs = new IntersectionObserver(e => e.forEach(en => { if(en.isIntersecting) en.target.classList.add('animated'); }), { threshold:0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => obs.observe(el));
+        const mt = document.getElementById('menuToggle'), nl = document.getElementById('navLinks');
+        mt.addEventListener('click', () => { mt.classList.toggle('active'); nl.classList.toggle('open'); });
+        document.querySelectorAll('.dropdown').forEach(d => { d.querySelector('.dropdown-toggle').addEventListener('click', e => { if(window.innerWidth<=768){e.preventDefault();d.classList.toggle('open');} }); });
+    </script>
 </body>
-
 </html>
