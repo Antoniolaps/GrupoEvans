@@ -2,7 +2,7 @@
 
 > **Versión:** 2.0  
 > **Última actualización:** Abril 2026  
-> **Repositorio:** `c:\Users\gamme\ServicioTecnico\Evans2`
+> **Repositorio:** ``
 
 ---
 
