@@ -217,6 +217,8 @@ Script de PowerShell para buscar y corregir rutas relativas rotas en todos los a
 
 ## 6. ¿Cómo funciona en Producción?
 
+## 6. ¿Cómo funciona en Producción?
+
 ### 6.1 Arquitectura General
 
 ```
@@ -225,78 +227,63 @@ Script de PowerShell para buscar y corregir rutas relativas rotas en todos los a
                           │ HTTPS
                           ▼
               ┌─────────────────────┐
-              │   CDN / Servidor    │
-              │   de Archivos       │
-              │  (Netlify / Vercel) │
+              │      HOSTINGER      │
+              │  (Servidor Linux)   │
+              │   Hosting / VPS     │
               └─────────┬───────────┘
                         │
            ┌────────────┴────────────┐
            │                         │
            ▼                         ▼
-   Archivos Estáticos         Función Serverless
-   (HTML + CSS + JS)          /api/track.js
+   Archivos Estáticos         Backend / Proxy
+   (HTML + CSS + JS)          (api/track.js)
                                     │
                                     ▼
                          API TrackingMore
                          (trackingmore.com)
 ```
 
-### 6.2 Hosting Recomendado: Netlify o Vercel
+### 6.2 Hosting: Hostinger
 
-Ambas plataformas soportan **sitios estáticos + funciones serverless**, que es exactamente lo que este proyecto necesita para el proxy de tracking.
+El sitio está optimizado para funcionar en **Hostinger**, aprovechando su panel de control (hPanel) para la gestión de archivos y variables de entorno.
 
-**Pasos para despliegue en Netlify:**
+**Pasos para despliegue en Hostinger:**
 
-1. **Conectar repositorio Git**
-   ```
-   Netlify Dashboard → Add new site → Import from Git → GitHub/GitLab
-   ```
+1. **Subida de archivos:**
+   - Opción A: **Git Integration** (Recomendado). Conecta tu repositorio de GitHub directamente desde el panel de Hostinger.
+   - Opción B: **Administrador de Archivos**. Sube el contenido de la carpeta raíz directamente a `public_html`.
 
-2. **Configurar build** (no hay build step, es HTML puro)
-   ```toml
-   # netlify.toml
-   [build]
-     publish = "."
-     command = ""
+2. **Configuración de Node.js (para el Tracker):**
+   - Hostinger permite habilitar una aplicación Node.js desde el panel. 
+   - Asegúrate de apuntar el "Application Root" a la carpeta `api/` y configurar el script de inicio si es necesario.
 
-   [[redirects]]
-     from = "/api/*"
-     to = "/.netlify/functions/:splat"
-     status = 200
-   ```
+3. **Variables de entorno:**
+   - En el hPanel, ve a **Avanzado → Variables de Entorno** (o mediante un archivo `.env` si usas VPS).
+   - Registra la clave: `TRACKINGMORE_API_KEY = tu_clave_aqui`.
 
-3. **Mover el proxy** de `api/track.js` a `netlify/functions/track.js`
-
-4. **Variables de entorno** (NUNCA en el código fuente)
-   ```
-   Netlify Dashboard → Site settings → Environment variables
-   TRACKINGMORE_API_KEY = tu_clave_aqui
-   ```
-
-5. **Formulario de contacto** — Formspree ya está configurado. Solo necesita que el dominio esté verificado en formspree.io.
+4. **Formulario de contacto:**
+   - Formspree ya está configurado en el código. Solo asegúrate de que el dominio `evansslogistics.com` esté verificado en tu cuenta de formspree.io para recibir los correos.
 
 ### 6.3 Configuración de Dominio
 
-Una vez en Netlify/Vercel:
-1. Comprar dominio `evanslogistics.com` en un registrador (GoDaddy, Namecheap)
-2. Agregar el dominio personalizado en el panel de Netlify
-3. Configurar registros DNS `A` y `CNAME` apuntando a los servidores de Netlify
-4. HTTPS/SSL se activa automáticamente via Let's Encrypt (gratuito)
+En Hostinger:
+1. Asegúrate de que el dominio `evansslogistics.com` esté apuntando a los Nameservers de Hostinger.
+2. Instalar el certificado **SSL Gratuito** (Let's Encrypt) desde el panel de seguridad de Hostinger para habilitar HTTPS.
+3. El archivo `.htaccess` puede usarse para forzar HTTPS si no se hace automáticamente.
 
 ### 6.4 Variables de Entorno Requeridas
 
 | Variable | Descripción | Dónde se usa |
 |----------|-------------|---------------|
 | `TRACKINGMORE_API_KEY` | Clave API de TrackingMore | `api/track.js` |
-| *(Formspree endpoint)* | Configurado vía `action` en el HTML | `contacto.html` |
+| *(Formspree)* | Email de destino configurado en HTML | `contacto.html` |
 
-### 6.5 Rendimiento en Producción
+### 6.5 Rendimiento y Caché
 
-- **Sin bundling:** Los archivos HTML/CSS/JS son servidos directamente por CDN con compresión gzip automática.
-- **Fuentes externas:** Montserrat y Bebas Neue se cargan desde Google Fonts con `rel="preconnect"`.
-- **Imágenes:** Se recomienda comprimir todos los archivos `.jpeg` con Squoosh o TinyPNG antes del deploy. Algunas imágenes actuales superan los 200KB.
-- **Cache:** Netlify/Vercel configuran headers de cache correctos automáticamente.
-- **Score esperado en Lighthouse:** Performance 85+, Accessibility 90+, SEO 95+.
+- **LiteSpeed Cache:** Si usas el servidor LiteSpeed de Hostinger, activa el plugin de caché para mejorar la velocidad de entrega de los archivos estáticos.
+- **Compresión Gzip/Brotli:** Asegúrate de que esté habilitada en el panel para reducir el peso de los archivos CSS y JS.
+- **Imágenes:** Se recomienda optimizar las imágenes en `/assets/img/` antes de la subida, ya que Hostinger servirá los archivos tal cual se suban.
+
 
 ### 6.6 Checklist de Calidad (Post-Profesionalización Abril 2026)
 

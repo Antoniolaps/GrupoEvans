@@ -43,7 +43,7 @@ Evans2/
 
 ## ⚠️ Recordatorios para el Desarrollador
 - [ ] Optimizar imágenes pesadas antes de cada deploy.
-- [ ] Verificar que el proxy de tracking use variables de entorno en hosting (Netlify/Vercel).
+- [ ] Verificar que el proxy de tracking use variables de entorno en hosting (Hostinger).
 - [ ] No usar frameworks pesados; mantener la filosofía **Vanilla Web** para máximo performance.
 
 ---
