@@ -252,16 +252,18 @@ if (trackingForm) {
         try {
             // Utilizamos el backend local para proteger la API Key y evitar problemas de CORS
             const response = await fetch(`/api/track?tracking_number=${encodeURIComponent(trackingInput)}`);
+            const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}. Este error suele suceder si pruebas en local sin un entorno de Vercel.`);
+                const errorMsg = (data.meta && data.meta.message) || `Error ${response.status}`;
+                throw new Error(errorMsg);
             }
-
-            const data = await response.json();
 
             if (data.meta && data.meta.code === 200 && data.data && data.data.length > 0) {
                 const trackData = data.data[0];
-
+                // ... same logic as before ...
+                // [Omitindo resto do processamento para brevidade, mantendo compatibilidade]
+                
                 // Parse status
                 const statuses = {
                     'pending': 'Pendiente', 'notfound': 'No encontrado', 'transit': 'En tránsito',
@@ -317,8 +319,8 @@ if (trackingForm) {
         } catch (error) {
             console.error('Error fetching tracking:', error);
             errorDiv.innerHTML = `
-                Error de conexión. <br>
-                <span style="font-size: 0.85em; font-weight: normal;">(Nota técnica: La API de TrackingMore puede bloquear peticiones directas desde el navegador por seguridad CORS. En producción se requiere un servidor intermediario).</span>
+                <strong>Error:</strong> ${error.message} <br>
+                <span style="font-size: 0.85em; font-weight: normal;">Verifica el número e intenta nuevamente.</span>
             `;
             errorDiv.style.display = 'block';
         } finally {

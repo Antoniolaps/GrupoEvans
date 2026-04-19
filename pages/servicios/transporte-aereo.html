@@ -1,70 +1,380 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transporte Aéreo — Evans Logistics | Carga Express Global</title>
-    <meta name="description" content="Transporte aéreo de carga urgente y de alto valor con conexiones a más de 200 aeropuertos. Evans Logistics garantiza los menores tiempos de tránsito del mercado.">
+    <meta name="description"
+        content="Transporte aéreo de carga urgente y de alto valor con conexiones a más de 200 aeropuertos. Evans Logistics garantiza los menores tiempos de tránsito del mercado.">
     <link href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@4.5.0/index.min.css" rel="stylesheet">
     <link href="../../assets/css/styles.css" rel="stylesheet">
     <link href="../../assets/css/responsive.css" rel="stylesheet">
     <style>
-        .page-hero { margin-top:75px; background:linear-gradient(135deg,#1a1a2e 0%,#0b74b8 60%,#085a8f 100%); padding:90px 20px 80px; text-align:center; position:relative; overflow:hidden; }
-        .page-hero::before { content:''; position:absolute; width:500px; height:500px; background:rgba(255,255,255,0.04); border-radius:50%; top:-150px; right:-100px; }
-        .page-hero .breadcrumb { color:rgba(255,255,255,0.6); font-size:13px; margin-bottom:20px; position:relative; z-index:2; }
-        .page-hero .breadcrumb a { color:rgba(255,255,255,0.7); text-decoration:none; }
-        .page-hero h1 { font-size:3rem; font-weight:900; color:#fff; margin-bottom:20px; position:relative; z-index:2; line-height:1.15; }
-        .page-hero h1 span { color:#60c8f5; }
-        .page-hero p { font-size:1.1rem; color:rgba(255,255,255,0.8); max-width:680px; margin:0 auto 35px; position:relative; z-index:2; line-height:1.75; }
-        .hero-btns2 { display:flex; gap:15px; justify-content:center; flex-wrap:wrap; position:relative; z-index:2; }
-        .metrics-band { background:linear-gradient(135deg,#11ccdd,#0b74b8); padding:50px 20px; }
-        .metrics-inner { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1000px; margin:0 auto; text-align:center; }
-        .metric-item { color:#fff; }
-        .metric-number { font-size:2.5rem; font-weight:900; margin-bottom:5px; }
-        .metric-label { font-size:13px; opacity:0.75; text-transform:uppercase; letter-spacing:1px; }
-        .service-highlights { background:#fff; padding:80px 20px; }
-        .highlights-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; max-width:1100px; margin:0 auto; }
-        .highlights-img { border-radius:20px; overflow:hidden; height:420px; position:relative; }
-        .highlights-img img { width:100%; height:100%; object-fit:cover; }
-        .highlights-img-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(221,17,37,0.3),rgba(26,26,46,0.3)); }
-        .highlights-text h2 { font-size:2.4rem; font-weight:900; color:#2c3e50; margin-bottom:15px; line-height:1.2; }
-        .highlights-text h2 span { color:#dd1125; }
-        .highlights-text p { color:#7f8c8d; line-height:1.8; margin-bottom:18px; }
-        .features-list { list-style:none; margin-bottom:30px; }
-        .features-list li { display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid #f0f4f8; font-size:0.95rem; color:#2c3e50; font-weight:600; }
-        .check-circle { width:28px; height:28px; border-radius:50%; background:#fff3f4; color:#690e17; display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; font-weight:700; }
-        .types-section { padding:90px 20px; background:#f8f9fa; }
-        .types-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; max-width:1100px; margin:0 auto; }
-        .type-card { background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.07); transition:all 0.3s; }
-        .type-card:hover { transform:translateY(-8px); box-shadow:0 15px 40px rgba(221,17,37,0.12); }
-        .type-card-header { background:linear-gradient(135deg,#670c15,#7d0712); padding:28px; text-align:center; color:#fff; }
-        .type-icon { font-size:2.5rem; margin-bottom:10px; }
-        .type-card-header h3 { font-size:1.15rem; font-weight:800; }
-        .type-card-body { padding:28px; }
-        .type-card-body p { color:#7f8c8d; line-height:1.7; margin-bottom:20px; font-size:0.93rem; }
-        .features-mini { list-style:none; margin-bottom:22px; }
-        .features-mini li { padding:5px 0; color:#2c3e50; font-size:0.87rem; display:flex; gap:8px; }
-        .features-mini li::before { content:'✓'; color:#6a0b14; font-weight:700; }
-        .service-cta { padding:90px 20px; background:linear-gradient(135deg,#1a1a2e,#0d2137); text-align:center; }
-        .service-cta h2 { font-size:2.4rem; font-weight:900; color:#fff; margin-bottom:15px; }
-        .service-cta h2 span { color:#610f17; }
-        .service-cta p { color:rgba(255,255,255,0.75); font-size:1.05rem; margin-bottom:35px; max-width:600px; margin-left:auto; margin-right:auto; }
-        .cta-group { display:flex; gap:15px; justify-content:center; flex-wrap:wrap; }
-        .btn-red { padding:15px 36px; background:#78101b; color:#fff; border-radius:10px; font-weight:800; font-size:15px; text-decoration:none; transition:all 0.3s; }
-        .btn-red:hover { background:#7f0915; transform:translateY(-3px); box-shadow:0 10px 25px rgba(221,17,37,0.4); }
-        .btn-ghost { padding:15px 36px; background:transparent; color:#fff; border:2px solid rgba(255,255,255,0.4); border-radius:10px; font-weight:700; font-size:15px; text-decoration:none; transition:all 0.3s; }
-        .btn-ghost:hover { border-color:#fff; background:rgba(255,255,255,0.08); }
-        .animate-on-scroll { opacity:0; transform:translateY(30px); transition:opacity 0.7s ease, transform 0.7s ease; }
-        .animate-on-scroll.animated { opacity:1; transform:translateY(0); }
-        .footer { background:#1a1a2e; }
-        @media (max-width:900px) { .highlights-grid { grid-template-columns:1fr; } .metrics-inner { grid-template-columns:1fr 1fr; } .types-grid { grid-template-columns:1fr 1fr; } .page-hero h1 { font-size:2.2rem; } }
-        @media (max-width:600px) { .types-grid { grid-template-columns:1fr; } }
+        .page-hero {
+            margin-top: 75px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0b74b8 60%, #085a8f 100%);
+            padding: 90px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 50%;
+            top: -150px;
+            right: -100px;
+        }
+
+        .page-hero .breadcrumb {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero .breadcrumb a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            line-height: 1.15;
+        }
+
+        .page-hero h1 span {
+            color: #60c8f5;
+        }
+
+        .page-hero p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 680px;
+            margin: 0 auto 35px;
+            position: relative;
+            z-index: 2;
+            line-height: 1.75;
+        }
+
+        .hero-btns2 {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .metrics-band {
+            background: linear-gradient(135deg, #11ccdd, #0b74b8);
+            padding: 50px 20px;
+        }
+
+        .metrics-inner {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .metric-item {
+            color: #fff;
+        }
+
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 13px;
+            opacity: 0.75;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-highlights {
+            background: #fff;
+            padding: 80px 20px;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .highlights-img {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 420px;
+            position: relative;
+        }
+
+        .highlights-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .highlights-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(221, 17, 37, 0.3), rgba(26, 26, 46, 0.3));
+        }
+
+        .highlights-text h2 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .highlights-text h2 span {
+            color: #dd1125;
+        }
+
+        .highlights-text p {
+            color: #7f8c8d;
+            line-height: 1.8;
+            margin-bottom: 18px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 0;
+            border-bottom: 1px solid #f0f4f8;
+            font-size: 0.95rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .check-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #fff3f4;
+            color: #690e17;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .types-section {
+            padding: 90px 20px;
+            background: #f8f9fa;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .type-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s;
+        }
+
+        .type-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(221, 17, 37, 0.12);
+        }
+
+        .type-card-header {
+            background: linear-gradient(135deg, #670c15, #7d0712);
+            padding: 28px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .type-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .type-card-header h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+        }
+
+        .type-card-body {
+            padding: 28px;
+        }
+
+        .type-card-body p {
+            color: #7f8c8d;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 0.93rem;
+        }
+
+        .features-mini {
+            list-style: none;
+            margin-bottom: 22px;
+        }
+
+        .features-mini li {
+            padding: 5px 0;
+            color: #2c3e50;
+            font-size: 0.87rem;
+            display: flex;
+            gap: 8px;
+        }
+
+        .features-mini li::before {
+            content: '✓';
+            color: #6a0b14;
+            font-weight: 700;
+        }
+
+        .service-cta {
+            padding: 90px 20px;
+            background: linear-gradient(135deg, #1a1a2e, #0d2137);
+            text-align: center;
+        }
+
+        .service-cta h2 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .service-cta h2 span {
+            color: #610f17;
+        }
+
+        .service-cta p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.05rem;
+            margin-bottom: 35px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-red {
+            padding: 15px 36px;
+            background: #78101b;
+            color: #fff;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-red:hover {
+            background: #7f0915;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(221, 17, 37, 0.4);
+        }
+
+        .btn-ghost {
+            padding: 15px 36px;
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-ghost:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer {
+            background: #1a1a2e;
+        }
+
+        @media (max-width:900px) {
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .types-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width:600px) {
+            .types-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
+
 <body>
     <nav class="navbar" id="navbar">
         <div class="nav-content">
-            <a href="../../index.html" class="logo"><img src="../../assets/img/EVANS-LOGO-WEB.png" alt="Evans Logistics Logo"></a>
+            <a href="../../index.html" class="logo"><img src="../../assets/img/EVANS-LOGO-WEB.png"
+                    alt="Evans Logistics Logo"></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="../../index.html">Inicio</a></li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle active">Servicios</a>
@@ -93,9 +403,12 @@
     </nav>
 
     <section class="page-hero">
-        <div class="breadcrumb"><a href="../../index.html">Inicio</a> / <a href="#">Servicios</a> / <strong style="color:#fff;">Transporte Aéreo</strong></div>
+        <div class="breadcrumb"><a href="../../index.html">Inicio</a> / <a href="#">Servicios</a> / <strong
+                style="color:#fff;">Transporte Aéreo</strong></div>
         <h1>✈️ Transporte Aéreo<br><span>Express de Alto Rendimiento</span></h1>
-        <p>Cuando el tiempo es el factor crítico de tu operación, Evans Logistics te conecta con más de 200 aeropuertos en el mundo con los tiempos de tránsito más competitivos del mercado y seguridad de nivel aeroportuario internacional.</p>
+        <p>Cuando el tiempo es el factor crítico de tu operación, Evans Logistics te conecta con más de 200 aeropuertos
+            en el mundo con los tiempos de tránsito más competitivos del mercado y seguridad de nivel aeroportuario
+            internacional.</p>
         <div class="hero-btns2">
             <a href="../cotizacion.html" class="btn btn-primary">Solicitar Cotización</a>
             <a href="../contacto.html" class="btn btn-secondary">Hablar con un Experto</a>
@@ -104,10 +417,22 @@
 
     <div class="metrics-band">
         <div class="metrics-inner">
-            <div class="metric-item animate-on-scroll"><div class="metric-number">200+</div><div class="metric-label">Aeropuertos</div></div>
-            <div class="metric-item animate-on-scroll"><div class="metric-number">24-72h</div><div class="metric-label">Entrega Express</div></div>
-            <div class="metric-item animate-on-scroll"><div class="metric-number">5</div><div class="metric-label">Continentes</div></div>
-            <div class="metric-item animate-on-scroll"><div class="metric-number">100%</div><div class="metric-label">Trazabilidad</div></div>
+            <div class="metric-item animate-on-scroll">
+                <div class="metric-number">200+</div>
+                <div class="metric-label">Aeropuertos</div>
+            </div>
+            <div class="metric-item animate-on-scroll">
+                <div class="metric-number">24-72h</div>
+                <div class="metric-label">Entrega Express</div>
+            </div>
+            <div class="metric-item animate-on-scroll">
+                <div class="metric-number">5</div>
+                <div class="metric-label">Continentes</div>
+            </div>
+            <div class="metric-item animate-on-scroll">
+                <div class="metric-number">100%</div>
+                <div class="metric-label">Trazabilidad</div>
+            </div>
         </div>
     </div>
 
@@ -120,17 +445,23 @@
             <div class="highlights-text animate-on-scroll">
                 <span class="section-tag">Velocidad con Seguridad</span>
                 <h2>La Solución Aérea Más <span>Completa y Confiable</span></h2>
-                <p>Gestionamos tu carga aérea con la misma eficiencia y rigor que aplicamos a cada operación logística. Nuestras alianzas con aerolíneas líderes como FedEx, DHL y Emirates SkyCargo nos garantizan prioridad de espacio y tarifas competitivas en cualquier ruta del mundo.</p>
-                <p>Desde la recolección en origen hasta la entrega en destino, asumimos la responsabilidad total: documentación, aduanas, seguros y confirmación de entrega en tiempo real.</p>
+                <p>Gestionamos tu carga aérea con la misma eficiencia y rigor que aplicamos a cada operación logística.
+                    Nuestras alianzas con aerolíneas líderes como FedEx, DHL y Emirates SkyCargo nos garantizan
+                    prioridad de espacio y tarifas competitivas en cualquier ruta del mundo.</p>
+                <p>Desde la recolección en origen hasta la entrega en destino, asumimos la responsabilidad total:
+                    documentación, aduanas, seguros y confirmación de entrega en tiempo real.</p>
                 <ul class="features-list">
-                    <li><span class="check-circle">✓</span> Conexiones directas con +200 aeropuertos internacionales</li>
+                    <li><span class="check-circle">✓</span> Conexiones directas con +200 aeropuertos internacionales
+                    </li>
                     <li><span class="check-circle">✓</span> Entrega express garantizada en 24 a 72 horas</li>
-                    <li><span class="check-circle">✓</span> Manejo especial: carga peligrosa, perecedera y de alto valor</li>
+                    <li><span class="check-circle">✓</span> Manejo especial: carga peligrosa, perecedera y de alto valor
+                    </li>
                     <li><span class="check-circle">✓</span> Despacho aduanero integral incluido en el servicio</li>
                     <li><span class="check-circle">✓</span> Seguro internacional certificado IATA</li>
                     <li><span class="check-circle">✓</span> Monitoreo de vuelo y alertas automáticas de estado</li>
                 </ul>
-                <a href="../cotizacion.html" class="btn btn-primary" style="background:#dd1125;">Solicitar Cotización Aérea</a>
+                <a href="../cotizacion.html" class="btn btn-primary" style="background:#dd1125;">Solicitar Cotización
+                    Aérea</a>
             </div>
         </div>
     </section>
@@ -140,13 +471,18 @@
             <div class="section-header animate-on-scroll" style="text-align:center; margin-bottom:50px;">
                 <span class="section-tag">Modalidades de Servicio Aéreo</span>
                 <h2 class="section-title">Soluciones para <span>Cada Urgencia</span></h2>
-                <p class="section-subtitle">Desde carga express de alto valor hasta envíos consolidados internacionales, tenemos la modalidad ideal para tu operación.</p>
+                <p class="section-subtitle">Desde carga express de alto valor hasta envíos consolidados internacionales,
+                    tenemos la modalidad ideal para tu operación.</p>
             </div>
             <div class="types-grid">
                 <div class="type-card animate-on-scroll">
-                    <div class="type-card-header"><div class="type-icon">⚡</div><h3>Carga Express</h3></div>
+                    <div class="type-card-header">
+                        <div class="type-icon">⚡</div>
+                        <h3>Carga Express</h3>
+                    </div>
                     <div class="type-card-body">
-                        <p>Prioridad máxima en los primeros vuelos disponibles. Para envíos urgentes donde cada hora cuenta.</p>
+                        <p>Prioridad máxima en los primeros vuelos disponibles. Para envíos urgentes donde cada hora
+                            cuenta.</p>
                         <ul class="features-mini">
                             <li>Recolección en menos de 3 horas</li>
                             <li>Primer vuelo disponible garantizado</li>
@@ -157,9 +493,13 @@
                     </div>
                 </div>
                 <div class="type-card animate-on-scroll">
-                    <div class="type-card-header" style="background:linear-gradient(135deg,#0b74b8,#085a8f);"><div class="type-icon">📦</div><h3>Carga General</h3></div>
+                    <div class="type-card-header" style="background:linear-gradient(135deg,#0b74b8,#085a8f);">
+                        <div class="type-icon">📦</div>
+                        <h3>Carga General</h3>
+                    </div>
                     <div class="type-card-body">
-                        <p>Solución estándar para envíos internacionales con equilibrio óptimo entre velocidad y costo.</p>
+                        <p>Solución estándar para envíos internacionales con equilibrio óptimo entre velocidad y costo.
+                        </p>
                         <ul class="features-mini">
                             <li>Entrega en 48-72 horas a destinos clave</li>
                             <li>Documentación aduanera incluida</li>
@@ -170,9 +510,13 @@
                     </div>
                 </div>
                 <div class="type-card animate-on-scroll">
-                    <div class="type-card-header" style="background:linear-gradient(135deg,#2c3e50,#1a252f);"><div class="type-icon">🌡️</div><h3>Carga Especial</h3></div>
+                    <div class="type-card-header" style="background:linear-gradient(135deg,#2c3e50,#1a252f);">
+                        <div class="type-icon">🌡️</div>
+                        <h3>Carga Especial</h3>
+                    </div>
                     <div class="type-card-body">
-                        <p>Protocolos certificados IATA para mercancía peligrosa, farmacéutica, perecedera y de colección.</p>
+                        <p>Protocolos certificados IATA para mercancía peligrosa, farmacéutica, perecedera y de
+                            colección.</p>
                         <ul class="features-mini">
                             <li>Certificación IATA para DG (materiales peligrosos)</li>
                             <li>Cadena de frío controlada durante el vuelo</li>
@@ -188,7 +532,8 @@
 
     <section class="service-cta">
         <h2>¿Tu Envío No <span>Puede Esperar</span>?</h2>
-        <p>Nuestro equipo aéreo está disponible 24/7 para coordinar tu carga urgente. Recibe una propuesta personalizada en menos de 2 horas.</p>
+        <p>Nuestro equipo aéreo está disponible 24/7 para coordinar tu carga urgente. Recibe una propuesta personalizada
+            en menos de 2 horas.</p>
         <div class="cta-group">
             <a href="../cotizacion.html" class="btn-red">📋 Solicitar Cotización Express</a>
             <a href="../contacto.html" class="btn-ghost">💬 Hablar con un Asesor</a>
@@ -197,24 +542,40 @@
 
     <footer class="footer">
         <div class="footer-grid">
-            <div class="footer-brand"><h3>Evans<span>Logistic</span></h3><p>Conectamos empresas con el mundo.</p></div>
-            <div class="footer-col"><h4>Servicios</h4><ul class="footer-links">
-                <li><a href="transporte-terrestre.html">Transporte Terrestre</a></li>
-                <li><a href="transporte-aereo.html">Transporte Aéreo</a></li>
-                <li><a href="transporte-maritimo.html">Transporte Marítimo</a></li>
-                <li><a href="almacenamiento.html">Almacenamiento</a></li>
-                <li><a href="logistica-internacional.html">Logística Internacional</a></li>
-            </ul></div>
-            <div class="footer-col"><h4>Empresa</h4><ul class="footer-links">
-                <li><a href="../nosotros/quienes-somos.html">Quiénes Somos</a></li>
-                <li><a href="../noticias/index.html">Noticias</a></li>
-            </ul></div>
-            <div class="footer-col"><h4>Contacto</h4>
-                <div class="footer-contact-item"><span class="footer-contact-icon">📞</span><div class="footer-contact-text"><strong>Línea Comercial</strong>+507 6750-2610</div></div>
-                <div class="footer-contact-item"><span class="footer-contact-icon">✉️</span><div class="footer-contact-text"><strong>Correo</strong>jennifer.evans@grupoevanslogistics.com</div></div>
+            <div class="footer-brand">
+                <h3>Evans<span>Logistic</span></h3>
+                <p>Conectamos empresas con el mundo.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Servicios</h4>
+                <ul class="footer-links">
+                    <li><a href="transporte-terrestre.html">Transporte Terrestre</a></li>
+                    <li><a href="transporte-aereo.html">Transporte Aéreo</a></li>
+                    <li><a href="transporte-maritimo.html">Transporte Marítimo</a></li>
+                    <li><a href="almacenamiento.html">Almacenamiento</a></li>
+                    <li><a href="logistica-internacional.html">Logística Internacional</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <ul class="footer-links">
+                    <li><a href="../nosotros/quienes-somos.html">Quiénes Somos</a></li>
+                    <li><a href="../noticias/index.html">Noticias</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <div class="footer-contact-item"><span class="footer-contact-icon">📞</span>
+                    <div class="footer-contact-text"><strong>Línea Comercial</strong>+507 6750-2610</div>
+                </div>
+                <div class="footer-contact-item"><span class="footer-contact-icon">✉️</span>
+                    <div class="footer-contact-text"><strong>Correo</strong>jennifer.evans@grupoevanslogistics.com</div>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom"><p>© 2025 <a href="../../index.html">Evans Logistics Group</a>. Todos los derechos reservados.</p></div>
+        <div class="footer-bottom">
+            <p>© 2026 <a href="../../index.html">Evans Logistics Group</a>. Todos los derechos reservados.</p>
+        </div>
     </footer>
     <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
     <script>
@@ -229,4 +590,5 @@
         document.querySelectorAll('.dropdown').forEach(d => { d.querySelector('.dropdown-toggle').addEventListener('click', e => { if (window.innerWidth <= 768) { e.preventDefault(); d.classList.toggle('open'); } }); });
     </script>
 </body>
+
 </html>
