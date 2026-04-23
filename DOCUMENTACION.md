@@ -47,7 +47,7 @@ El proyecto es un sitio web **estático** (sin framework de frontend ni backend 
 ## 3. Estructura de Archivos
 
 ```
-Evans2/
+Group Evans/
 │
 ├── index.html                          # Homepage principal
 ├── DOCUMENTACION.md                    # Este archivo

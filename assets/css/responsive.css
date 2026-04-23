@@ -1,6 +1,6 @@
 /* ========== RESPONSIVE STYLES ========== */
 
-@media screan and (width >=768px) {
+@media screan and (max-width:768px) {
     .header {
         max-width: 800px;
     }
@@ -54,7 +54,8 @@
         pointer-events: all;
     }
 
-    .scroll-top, .scroll-top.visible {
+    .scroll-top,
+    .scroll-top.visible {
         display: none !important;
     }
 
@@ -134,7 +135,8 @@
         font-size: 1.5rem;
     }
 
-    .scroll-top, .scroll-top.visible {
+    .scroll-top,
+    .scroll-top.visible {
         display: none !important;
     }
 
