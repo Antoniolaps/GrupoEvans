@@ -1,26 +1,58 @@
-# Forzar HTTPS
+# BEGIN LSCACHE
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteRule litespeed/debug/.*\.log$ - [F,L]
+RewriteRule \.litespeed_conf\.dat - [F,L]
+</IfModule>
+<IfModule LiteSpeed>
+CacheLookup on
+RewriteRule .* - [E=Cache-Control:no-autoflush]
+
+### marker ASYNC start ###
+RewriteCond %{REQUEST_URI} /wp-admin/admin-ajax\.php
+RewriteCond %{QUERY_STRING} action=async_litespeed
+RewriteRule .* - [E=noabort:1]
+### marker ASYNC end ###
+
+### marker DROPQS start ###
+CacheKeyModify -qs:fbclid
+CacheKeyModify -qs:gclid
+CacheKeyModify -qs:utm*
+CacheKeyModify -qs:_ga
+### marker DROPQS end ###
+
+</IfModule>
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+# END LSCACHE
+
+# BEGIN CUSTOM OPTIMIZATIONS
+<IfModule mod_rewrite.c>
 RewriteEngine On
+RewriteBase /
+
+# 1. Forzar HTTPS
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Redirigir www a no-www (Opcional, pero recomendado para SEO)
-RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+# 2. Priorizar index.html sobre index.php (Web Estática > WordPress)
+DirectoryIndex index.html index.php
 
-# Redirigir index.html a la raíz
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
-RewriteRule ^index\.html$ https://evansslogistics.com/ [R=301,L]
-
-# Forzar URLs sin .html
+# 3. Clean URLs: Permitir acceso sin .html (ej: /pages/contacto)
+# Si no es un directorio y existe el archivo .html, úsalo internamente
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^([^/]+)$ $1.html [L]
+RewriteRule ^(.*)$ $1.html [L]
 
-# Yoast SEO Sitemap Rewrites
-RewriteRule ^sitemap_index\.xml$ /sitemap_index.xml [L]
-RewriteRule ^([^/]+?)-sitemap([0-9]+)?\.xml$ /$1-sitemap$2.xml [L]
+# 4. Evitar que WordPress interfiera con la carpeta /api (Node.js Proxy)
+RewriteRule ^api/(.*)$ - [L]
 
-# Configuración de caché básica
+# 5. Redirección para sitemaps (evitar errores por mayúsculas/minúsculas)
+RewriteRule ^sitemap_Index\.xml$ /sitemap_index.xml [R=301,L,NC]
+
+</IfModule>
+
+# Configuración de expiración para rendimiento (SEO)
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresDefault "access plus 1 month"
@@ -33,3 +65,15 @@ RewriteRule ^([^/]+?)-sitemap([0-9]+)?\.xml$ /$1-sitemap$2.xml [L]
     ExpiresByType text/css "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
+# END CUSTOM OPTIMIZATIONS
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress

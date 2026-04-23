@@ -1,4 +1,4 @@
-$files = Get-ChildItem -Path "c:\Users\gamme\ServicioTecnico\Propuesta1" -Recurse -Filter *.html
+$files = Get-ChildItem -Path "c:\Users\gamme\Downloads\public_html" -Recurse -Filter *.html
 
 foreach ($f in $files) {
     if ($f.FullName -match "(?i)\\pages\\[^\\]+\\[^\\]+") {
