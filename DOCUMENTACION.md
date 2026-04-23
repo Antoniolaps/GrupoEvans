@@ -32,7 +32,7 @@ El proyecto es un sitio web **estático** (sin framework de frontend ni backend 
 |------|-----------|-----|
 | **Estructura** | HTML5 semántico | Todas las páginas del sitio |
 | **Estilos** | CSS3 Vanilla | Diseño, animaciones, responsive |
-| **Interactividad** | JavaScript ES6+ (Vanilla) | Navbar, forms, tracking, acordeones, tabs |
+| **Interactividad** | JavaScript ES6+ (Vanilla) | Navbar, forms, acordeones, tabs |
 | **Tipografía** | Google Fonts / Fontsource (Montserrat) | Fuente corporativa en todas las páginas |
 | **Tipografía display** | Google Fonts (Bebas Neue) | Años en el timeline de Historia |
 | **Control de versiones** | Git | Historial de cambios (`.git/`) |
@@ -156,7 +156,7 @@ Script JavaScript compartido cargado en todas las páginas. Contiene:
 La página más compleja del sitio:
 - **Hero 4PL** con posicionamiento global
 - **Tabs de servicios** — 4 paneles interactivos (Multimodal, Aduana, Carga Proyecto, Cross-Border E-commerce)
-- **Tracker de envíos** — Integrado con proxy `/api/tracking`. Incluye fallback demo si el API no responde
+
 - **Grid de regiones** — Cobertura por continente (LATAM, Europa, Asia-Pacífico, Norteamérica)
 
 ### 4.8 `pages/nosotros/historia.html` — Historia

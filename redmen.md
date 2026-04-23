@@ -30,7 +30,7 @@ Evans2/
 ### Diferenciadores Clave
 - **Seguridad:** Protocolos verificados por estándares internacionales.
 - **Rapidez:** Respuesta comercial en menos de 4 horas hábiles.
-- **Transparencia:** Tracking en tiempo real integrado en la web.
+
 
 ### Información Corporativa
 - **Ubicación:** The Century Tower, Piso 16, Oficina 1620, Ciudad de Panamá.
@@ -43,7 +43,7 @@ Evans2/
 
 ## ⚠️ Recordatorios para el Desarrollador
 - [ ] Optimizar imágenes pesadas antes de cada deploy.
-- [ ] Verificar que el proxy de tracking use variables de entorno en hosting (Hostinger).
+
 - [ ] No usar frameworks pesados; mantener la filosofía **Vanilla Web** para máximo performance.
 
 ---

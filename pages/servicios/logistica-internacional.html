@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logística Internacional — Evans Logistics | 4PL Multimodal en +50 Países</title>
     <meta name="description"
-        content="Soluciones 4PL de logística internacional con gestión multimodal, despacho aduanero integral y tracking en tiempo real. Evans Logistics conecta tu empresa con cualquier mercado del mundo.">
+        content="Soluciones 4PL de logística internacional con gestión multimodal y despacho aduanero integral. Evans Logistics conecta tu empresa con cualquier mercado del mundo.">
     <meta name="theme-color" content="#0b74b8">
 
     <link rel="canonical" href="https://evansslogistics.com/pages/servicios/logistica-internacional">
@@ -436,278 +436,6 @@
             align-self: flex-start;
         }
 
-        /* Tracking section */
-        .tracking-section {
-            padding: 90px 20px;
-            background: #fff;
-        }
-
-        .tracking-inner {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .tracking-header {
-            text-align: center;
-            margin-bottom: 45px;
-        }
-
-        .tracking-box {
-            background: #f8f9fa;
-            border-radius: 24px;
-            padding: 50px 45px;
-            border: 1.5px solid #e0eaf4;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
-        }
-
-        .tracking-form-row {
-            display: flex;
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-
-        .tracking-input {
-            flex: 1;
-            padding: 15px 20px;
-            border: 2px solid #e0eaf4;
-            border-radius: 12px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            color: #2c3e50;
-            outline: none;
-            transition: border 0.3s;
-            background: #fff;
-        }
-
-        .tracking-input:focus {
-            border-color: #0b74b8;
-        }
-
-        .tracking-select {
-            padding: 15px 20px;
-            border: 2px solid #e0eaf4;
-            border-radius: 12px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            color: #2c3e50;
-            outline: none;
-            background: #fff;
-            cursor: pointer;
-            min-width: 180px;
-        }
-
-        .tracking-btn {
-            padding: 15px 32px;
-            background: linear-gradient(135deg, #0b74b8, #085a8f);
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 14px;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            transition: all 0.3s;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .tracking-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(11, 116, 184, 0.35);
-        }
-
-        .tracking-btn:disabled {
-            opacity: 0.65;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Results */
-        #trackingResult {
-            display: none;
-            margin-top: 30px;
-        }
-
-        .result-card {
-            background: #fff;
-            border: 1.5px solid #e0eaf4;
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        .result-header {
-            background: linear-gradient(135deg, #0b74b8, #085a8f);
-            color: #fff;
-            padding: 22px 28px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .result-header h3 {
-            font-size: 1.1rem;
-            font-weight: 800;
-            margin: 0;
-        }
-
-        .status-pill {
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .status-intransit {
-            background: rgba(245, 166, 35, 0.25);
-            color: #f5a623;
-            border: 1px solid rgba(245, 166, 35, 0.4);
-        }
-
-        .status-delivered {
-            background: rgba(39, 174, 96, 0.25);
-            color: #27ae60;
-            border: 1px solid rgba(39, 174, 96, 0.4);
-        }
-
-        .status-pending {
-            background: rgba(127, 140, 141, 0.25);
-            color: #7f8c8d;
-            border: 1px solid rgba(127, 140, 141, 0.4);
-        }
-
-        .result-body {
-            padding: 28px;
-        }
-
-        .result-info-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 28px;
-        }
-
-        .info-item label {
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #7f8c8d;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .info-item span {
-            font-size: 14px;
-            font-weight: 700;
-            color: #2c3e50;
-        }
-
-        /* Checkpoint timeline */
-        .checkpoints {
-            margin-top: 20px;
-        }
-
-        .checkpoints h4 {
-            font-size: 14px;
-            font-weight: 800;
-            color: #2c3e50;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .checkpoint-list {
-            list-style: none;
-            position: relative;
-            padding-left: 24px;
-        }
-
-        .checkpoint-list::before {
-            content: '';
-            position: absolute;
-            left: 8px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #e0eaf4;
-        }
-
-        .checkpoint-list li {
-            position: relative;
-            padding: 0 0 18px 24px;
-        }
-
-        .checkpoint-list li::before {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: 4px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #e0eaf4;
-            border: 2px solid #fff;
-            box-shadow: 0 0 0 2px #e0eaf4;
-        }
-
-        .checkpoint-list li.done::before {
-            background: #0b74b8;
-            box-shadow: 0 0 0 2px rgba(11, 116, 184, 0.25);
-        }
-
-        .checkpoint-list li.current::before {
-            background: #dd1125;
-            box-shadow: 0 0 0 3px rgba(221, 17, 37, 0.2);
-            animation: blink 1.5s infinite;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                box-shadow: 0 0 0 3px rgba(221, 17, 37, 0.2);
-            }
-
-            50% {
-                box-shadow: 0 0 0 6px rgba(221, 17, 37, 0.05);
-            }
-        }
-
-        .cp-time {
-            font-size: 11px;
-            color: #7f8c8d;
-            margin-bottom: 3px;
-        }
-
-        .cp-loc {
-            font-size: 13px;
-            font-weight: 700;
-            color: #2c3e50;
-        }
-
-        .cp-desc {
-            font-size: 12px;
-            color: #7f8c8d;
-        }
-
-        #trackingError {
-            display: none;
-            background: #fff3f4;
-            border: 1.5px solid rgba(221, 17, 37, 0.25);
-            border-radius: 12px;
-            padding: 20px 24px;
-            margin-top: 20px;
-            color: #c0392b;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
         /* Regions map visual */
         .regions-section {
             padding: 90px 20px;
@@ -874,9 +602,6 @@
                 grid-template-columns: repeat(3, 1fr);
             }
 
-            .tracking-form-row {
-                flex-direction: column;
-            }
 
             .regions-grid {
                 grid-template-columns: 1fr 1fr;
@@ -904,9 +629,6 @@
                 grid-template-columns: 1fr 1fr;
             }
 
-            .tracking-box {
-                padding: 30px 22px;
-            }
         }
     </style>
 </head>
@@ -954,7 +676,7 @@
             internacional de principio a fin en más de 50 países.</p>
         <div class="hero-btns">
             <a href="../cotizacion.html" class="btn btn-primary">Solicitar Cotización Global</a>
-            <a href="#tracking" class="btn btn-secondary">📡 Rastrear mi Envío</a>
+
         </div>
     </section>
 
@@ -1013,7 +735,7 @@
                     <li><span class="check-circle">✓</span> Gestión documental: BL, CO, Factura Comercial,
                         Fitosanitarios</li>
                     <li><span class="check-circle">✓</span> Seguro internacional de carga todo riesgo</li>
-                    <li><span class="check-circle">✓</span> Tracking activo con alertas proactivas de estado</li>
+
                     <li><span class="check-circle">✓</span> Cumplimiento Incoterms 2020 y normativa aduanera vigente
                     </li>
                 </ul>
@@ -1257,108 +979,7 @@
             document.getElementById('panel-' + id).classList.add('active');
             btn.classList.add('active');
         }
-
-        /* === TRACKING === */
-        async function doTracking() {
-            const num = document.getElementById('trackingNumber').value.trim();
-            const carrier = document.getElementById('carrierSelect').value;
-            const errBox = document.getElementById('trackingError');
-            const resBox = document.getElementById('trackingResult');
-            const btn = document.getElementById('trackBtn');
-            const btnTxt = document.getElementById('trackBtnText');
-            const btnIco = document.getElementById('trackBtnIcon');
-
-            errBox.style.display = 'none';
-            resBox.style.display = 'none';
-
-            if (!num) { errBox.style.display = 'block'; errBox.innerHTML = '<strong>⚠️ Ingresa un número de guía.</strong> El campo no puede estar vacío.'; return; }
-
-            // loading state
-            btn.disabled = true;
-            btnIco.textContent = '⏳';
-            btnTxt.textContent = 'Consultando...';
-
-            try {
-                const response = await fetch(`/api/tracking?trackingNumber=${encodeURIComponent(num)}&carrier=${encodeURIComponent(carrier)}`);
-                const data = await response.json();
-
-                if (!response.ok || !data.success) throw new Error(data.message || 'No encontrado');
-
-                const shipment = data.data;
-                renderTracking(shipment, num);
-                resBox.style.display = 'block';
-            } catch (err) {
-                // Fallback demo for when API is not available
-                if (num.length >= 8) {
-                    renderDemoTracking(num, carrier);
-                    resBox.style.display = 'block';
-                } else {
-                    errBox.style.display = 'block';
-                    errBox.innerHTML = '<strong>⚠️ No se encontraron resultados.</strong> Verifica que el número de guía sea correcto y que el transportista seleccionado coincida con el carrier de tu envío.';
-                }
-            } finally {
-                btn.disabled = false;
-                btnIco.textContent = '🔍';
-                btnTxt.textContent = 'Rastrear';
-            }
-        }
-
-        function renderTracking(shipment, num) {
-            document.getElementById('shipmentTitle').textContent = `Envío ${shipment.carrier || 'Internacional'}`;
-            document.getElementById('shipmentSubtitle').textContent = `Guía: ${num}`;
-            document.getElementById('rOrigin').textContent = shipment.origin || '—';
-            document.getElementById('rDest').textContent = shipment.destination || '—';
-            document.getElementById('rEta').textContent = shipment.estimated_delivery || 'Por confirmar';
-
-            const pill = document.getElementById('statusPill');
-            const status = (shipment.status || '').toLowerCase();
-            pill.className = 'status-pill';
-            if (status.includes('transit') || status.includes('tránsito')) { pill.classList.add('status-intransit'); pill.textContent = 'En Tránsito'; }
-            else if (status.includes('delivered') || status.includes('entregado')) { pill.classList.add('status-delivered'); pill.textContent = 'Entregado'; }
-            else { pill.classList.add('status-pending'); pill.textContent = shipment.status || 'Pendiente'; }
-
-            const cpList = document.getElementById('cpList');
-            cpList.innerHTML = '';
-            const events = shipment.events || shipment.checkpoints || [];
-            events.slice(0, 6).forEach((ev, i) => {
-                const li = document.createElement('li');
-                li.className = i === 0 ? 'current' : 'done';
-                li.innerHTML = `<div class="cp-time">${ev.time || ev.date || ''}</div><div class="cp-loc">${ev.location || ev.city || '—'}</div><div class="cp-desc">${ev.description || ev.status || ''}</div>`;
-                cpList.appendChild(li);
-            });
-        }
-
-        function renderDemoTracking(num, carrier) {
-            const carrierNames = { fedex: 'FedEx', dhl: 'DHL Express', ups: 'UPS', maersk: 'Maersk Line', msc: 'MSC', latam: 'LATAM Cargo', '': `Evans Logistics` };
-            document.getElementById('shipmentTitle').textContent = `Envío ${carrierNames[carrier] || 'Internacional'}`;
-            document.getElementById('shipmentSubtitle').textContent = `Guía: ${num}`;
-            document.getElementById('rOrigin').textContent = 'Shanghái, China';
-            document.getElementById('rDest').textContent = 'Ciudad de Panamá, Panamá';
-            document.getElementById('rEta').textContent = '22 de Abril, 2025';
-            const pill = document.getElementById('statusPill');
-            pill.className = 'status-pill status-intransit';
-            pill.textContent = 'En Tránsito';
-            const events = [
-                { time: '17 Abr 2025 · 14:32', loc: 'Puerto de Manzanillo, Panamá', desc: 'Contenedor en tránsito hacia terminal de destino' },
-                { time: '15 Abr 2025 · 09:10', loc: 'Canal de Panamá', desc: 'Tránsito por el Canal completado exitosamente' },
-                { time: '12 Abr 2025 · 06:45', loc: 'Buenaventura, Colombia', desc: 'Transbordo realizado. Cargado en buque siguiente' },
-                { time: '05 Abr 2025 · 22:00', loc: 'Shanghái, China', desc: 'Carga embarcada. BL emitido y confirmado' },
-                { time: '03 Abr 2025 · 15:20', loc: 'Shanghái, China', desc: 'Contenedor sellado y listo para embarque' },
-            ];
-            const cpList = document.getElementById('cpList');
-            cpList.innerHTML = '';
-            events.forEach((ev, i) => {
-                const li = document.createElement('li');
-                li.className = i === 0 ? 'current' : 'done';
-                li.innerHTML = `<div class="cp-time">${ev.time}</div><div class="cp-loc">${ev.loc}</div><div class="cp-desc">${ev.desc}</div>`;
-                cpList.appendChild(li);
-            });
-        }
-
-        // Allow Enter key for tracking
-        document.getElementById('trackingNumber').addEventListener('keydown', e => { if (e.key === 'Enter') doTracking(); });
     </script>
-    <script src="../../assets/js/main.js"></script>
 </body>
 
 </html>
