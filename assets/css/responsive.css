@@ -3,11 +3,6 @@
 @media screan and (width >=768px) {
     .header {
         max-width: 800px;
-
-    }
-
-    .scroll-top.visible {
-        visibility: none;
     }
 }
 
@@ -30,10 +25,6 @@
 
     .process-grid::before {
         display: none;
-    }
-
-    .scroll-top.visible {
-        visibility: none;
     }
 
     .footer-grid {
@@ -63,8 +54,8 @@
         pointer-events: all;
     }
 
-    .scroll-top.visible {
-        visibility: none;
+    .scroll-top, .scroll-top.visible {
+        display: none !important;
     }
 
     .dropdown-menu {
@@ -143,8 +134,8 @@
         font-size: 1.5rem;
     }
 
-    .scroll-top.visible {
-        visibility: none;
+    .scroll-top, .scroll-top.visible {
+        display: none !important;
     }
 
     .btn {
