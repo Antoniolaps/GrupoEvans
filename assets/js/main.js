@@ -1,333 +1,266 @@
-// ========== NAVBAR SCROLL ==========
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+/**
+ * EVANS LOGISTICS - MAIN JAVASCRIPT
+ * Optimized for performance and SEO
+ */
+
+// ========== GLOBAL UTILITIES ==========
+window.openModal = (e, modalId) => {
+    if (e) e.preventDefault();
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
     }
-});
-
-// ========== MOBILE MENU ==========
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-
-menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    navLinks.classList.toggle('open');
-});
-
-// Close menu on link click
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        navLinks.classList.remove('open');
-    });
-});
-
-// Mobile dropdown toggle
-document.querySelectorAll('.dropdown').forEach(drop => {
-    const toggle = drop.querySelector('.dropdown-toggle');
-    toggle.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            drop.classList.toggle('open');
-        }
-    });
-});
-
-// ========== HERO CAROUSEL ==========
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-const dots = document.querySelectorAll('.carousel-dot');
-let carouselInterval;
-
-function showSlide(index) {
-    if (slides.length === 0) return;
-    slides.forEach(s => s.classList.remove('active'));
-    dots.forEach(d => d.classList.remove('active'));
-    currentSlide = (index + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
-    if (dots.length > 0) dots[currentSlide].classList.add('active');
-}
-
-function changeSlide(direction) {
-    if (slides.length === 0) return;
-    showSlide(currentSlide + direction);
-    resetCarouselInterval();
-}
-
-function goToSlide(index) {
-    if (slides.length === 0) return;
-    showSlide(index);
-    resetCarouselInterval();
-}
-
-function resetCarouselInterval() {
-    clearInterval(carouselInterval);
-    if (slides.length > 0) {
-        carouselInterval = setInterval(() => changeSlide(1), 5000);
-    }
-}
-
-if (slides.length > 0) {
-    carouselInterval = setInterval(() => changeSlide(1), 5000);
-}
-
-// ========== INFO CAROUSEL ==========
-let infoPosition = 0;
-const infoTrack = document.getElementById('infoTrack');
-
-function moveInfoCarousel(direction) {
-    const cards = document.querySelectorAll('.info-card');
-    const cardWidth = cards[0].offsetWidth + 30;
-    const containerWidth = infoTrack.parentElement.offsetWidth;
-    const maxScroll = -(cards.length * cardWidth - containerWidth);
-
-    infoPosition += direction * -cardWidth;
-    infoPosition = Math.max(maxScroll, Math.min(0, infoPosition));
-    infoTrack.style.transform = `translateX(${infoPosition}px)`;
-}
-
-// ========== SCROLL TO TOP ==========
-const scrollTopBtn = document.getElementById('scrollTop');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) {
-        scrollTopBtn.classList.add('visible');
-    } else {
-        scrollTopBtn.classList.remove('visible');
-    }
-});
-
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ========== COUNTER ANIMATION ==========
-function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-target'));
-        const duration = 2000;
-        const start = 0;
-        const startTime = performance.now();
-
-        function updateCounter(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easeOut = 1 - Math.pow(1 - progress, 3);
-            const current = Math.floor(easeOut * target);
-
-            counter.textContent = current.toLocaleString() + (target >= 100 ? '+' : '+');
-
-            if (progress < 1) {
-                requestAnimationFrame(updateCounter);
-            }
-        }
-
-        requestAnimationFrame(updateCounter);
-    });
-}
-
-// ========== SCROLL ANIMATIONS ==========
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animated');
+window.closeModal = (modalId) => {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+};
 
-            // Trigger counter animation for stats
-            if (entry.target.classList.contains('stat-card')) {
+window.closeModalOutside = (e, modalId) => {
+    if (e.target.id === modalId) window.closeModal(modalId);
+};
+
+window.switchTab = (tabId) => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    const tab = document.getElementById('tab-' + tabId);
+    const panel = document.getElementById('panel-' + tabId);
+    if (tab && panel) {
+        tab.classList.add('active');
+        panel.classList.add('active');
+    }
+};
+
+window.toggleAccordion = (id) => {
+    const item = document.getElementById(id);
+    if (!item) return;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+};
+
+window.scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+// ========== INITIALIZATION ==========
+document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('navbar');
+    const scrollTopBtn = document.getElementById('scrollTop');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    // --- Navbar & Scroll Top combined ---
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY > 50;
+        if (navbar) navbar.classList.toggle('scrolled', scrolled);
+        if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+
+    // --- Mobile Menu ---
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+    }
+
+    // --- Mobile Dropdowns ---
+    document.querySelectorAll('.dropdown').forEach(drop => {
+        const toggle = drop.querySelector('.dropdown-toggle');
+        if (toggle) {
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    drop.classList.toggle('open');
+                }
+            });
+        }
+    });
+
+    // --- Hero Carousel ---
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+    let carouselInterval;
+
+    if (slides.length > 0) {
+        const showSlide = (index) => {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            currentSlide = (index + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+        };
+
+        const resetCarousel = () => {
+            clearInterval(carouselInterval);
+            carouselInterval = setInterval(() => showSlide(currentSlide + 1), 5000);
+        };
+
+        // Touch support
+        const heroCarousel = document.getElementById('heroCarousel');
+        if (heroCarousel) {
+            let startX = 0;
+            heroCarousel.addEventListener('touchstart', e => startX = e.touches[0].clientX, { passive: true });
+            heroCarousel.addEventListener('touchend', e => {
+                const diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                    showSlide(currentSlide + (diff > 0 ? 1 : -1));
+                    resetCarousel();
+                }
+            }, { passive: true });
+        }
+
+        carouselInterval = setInterval(() => showSlide(currentSlide + 1), 5000);
+        
+        // Expose to window for inline dots/arrows if any
+        window.changeSlide = (dir) => { showSlide(currentSlide + dir); resetCarousel(); };
+        window.goToSlide = (idx) => { showSlide(idx); resetCarousel(); };
+    }
+
+    // --- Info Carousel ---
+    const infoTrack = document.getElementById('infoTrack');
+    const infoWrapper = document.querySelector('.info-carousel-wrapper');
+    if (infoTrack && infoWrapper) {
+        let infoPos = 0;
+        const moveInfo = (dir) => {
+            const cards = infoTrack.querySelectorAll('.info-card');
+            if (cards.length === 0) return;
+            const cardWidth = cards[0].offsetWidth + 30;
+            const maxScroll = -(cards.length * cardWidth - infoWrapper.offsetWidth);
+            infoPos = Math.max(maxScroll, Math.min(0, infoPos + dir * -cardWidth));
+            infoTrack.style.transform = `translateX(${infoPos}px)`;
+        };
+
+        window.moveInfoCarousel = moveInfo;
+
+        let startX = 0;
+        infoWrapper.addEventListener('touchstart', e => startX = e.touches[0].clientX, { passive: true });
+        infoWrapper.addEventListener('touchend', e => {
+            const diff = startX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) moveInfo(diff > 0 ? 1 : -1);
+        }, { passive: true });
+    }
+
+    // --- Counter Animation ---
+    const animateCounter = (el) => {
+        const target = parseInt(el.dataset.target);
+        const duration = 2000;
+        const start = performance.now();
+        const update = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(ease * target).toLocaleString() + '+';
+            if (progress < 1) requestAnimationFrame(update);
+        };
+        requestAnimationFrame(update);
+    };
+
+    // --- Intersection Observer (Scroll Animations) ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
                 const counter = entry.target.querySelector('.stat-number');
                 if (counter && !counter.classList.contains('counted')) {
                     counter.classList.add('counted');
-                    animateCounters();
+                    animateCounter(counter);
                 }
+                observer.unobserve(entry.target); // Optimize: stop observing once animated
             }
-        }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+    // --- Smooth Scroll ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const id = this.getAttribute('href');
+            if (id === '#') return;
+            const target = document.querySelector(id);
+            if (target) {
+                e.preventDefault();
+                const offset = navbar ? navbar.offsetHeight : 0;
+                window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+            }
+        });
     });
-}, observerOptions);
 
-document.querySelectorAll('.animate-on-scroll').forEach(el => {
-    observer.observe(el);
-});
+    // --- WhatsApp Floating Button ---
+    if (!document.querySelector('.whatsapp-float')) {
+        const waBtn = document.createElement("a");
+        waBtn.href = "https://wa.me/50767502610";
+        waBtn.className = "whatsapp-float";
+        waBtn.target = "_blank";
+        waBtn.rel = "noopener noreferrer";
+        waBtn.title = "Contáctanos por WhatsApp";
+        waBtn.innerHTML = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' width='24' height='24'><path fill='currentColor' d='M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z'/></svg>`;
+        document.body.appendChild(waBtn);
+    }
 
-// ========== SMOOTH SCROLL FOR NAV LINKS ==========
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
+    // --- Tracking System ---
+    const trackingForm = document.getElementById('trackingForm');
+    if (trackingForm) {
+        trackingForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const navHeight = navbar.offsetHeight;
-            const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
-            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-        }
-    });
-});
+            const input = document.getElementById('trackingInput').value.trim();
+            const container = document.getElementById('trackingResultsContainer');
+            const table = document.getElementById('trackingTable');
+            const body = document.getElementById('trackingBody');
+            const errorDiv = document.getElementById('trackingError');
+            const btn = document.getElementById('trackingSubmitBtn');
 
-// ========== TOUCH SUPPORT FOR CAROUSELS ==========
-let touchStartX = 0;
-let touchEndX = 0;
+            if (!input) return;
 
-const heroCarousel = document.getElementById('heroCarousel');
-if (heroCarousel) {
-    heroCarousel.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
+            container.style.display = 'block';
+            table.style.display = 'none';
+            errorDiv.style.display = 'none';
+            body.innerHTML = '';
+            btn.disabled = true;
+            btn.innerHTML = 'Buscando...';
 
-    heroCarousel.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 50) {
-            changeSlide(diff > 0 ? 1 : -1);
-        }
-    }, { passive: true });
-}
+            try {
+                const res = await fetch(`/api/track?tracking_number=${encodeURIComponent(input)}`);
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.meta?.message || 'Error');
 
-const infoWrapper = document.querySelector('.info-carousel-wrapper');
-if (infoWrapper) {
-    infoWrapper.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    infoWrapper.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 50) {
-            moveInfoCarousel(diff > 0 ? 1 : -1);
-        }
-    }, { passive: true });
-}
-// ========== WHATSAPP BUTTON INJECTION ==========
-document.addEventListener("DOMContentLoaded", function () {
-    const waBtn = document.createElement("a");
-    waBtn.href = "https://web.whatsapp.com/"; // The phone number from the footer
-    waBtn.className = "whatsapp-float";
-    waBtn.target = "_blank";
-    waBtn.title = "Contactanos por WhatsApp";
-    waBtn.innerHTML = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'><path d='M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z'/></svg>";
-    document.body.appendChild(waBtn);
-});
-
-// ========== TRACKING SYSTEM ==========
-const trackingForm = document.getElementById('trackingForm');
-if (trackingForm) {
-    trackingForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
-
-        const trackingInput = document.getElementById('trackingInput').value.trim();
-        const resultsContainer = document.getElementById('trackingResultsContainer');
-        const trackingTable = document.getElementById('trackingTable');
-        const trackingBody = document.getElementById('trackingBody');
-        const errorDiv = document.getElementById('trackingError');
-        const submitBtn = document.getElementById('trackingSubmitBtn');
-
-        if (!trackingInput) return;
-
-        // Reset view
-        resultsContainer.style.display = 'block';
-        trackingTable.style.display = 'none';
-        errorDiv.style.display = 'none';
-        trackingBody.innerHTML = '';
-
-        // Show loading state
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span style="display:inline-block;width:1rem;height:1rem;border:2px solid #fff;border-radius:50%;border-top-color:transparent;animation:spin 1s linear infinite;margin-right:5px;vertical-align:middle;"></span> Buscando...';
-
-        if (!document.getElementById('spinStyle')) {
-            const style = document.createElement('style');
-            style.id = 'spinStyle';
-            style.innerHTML = '@keyframes spin { to { transform: rotate(360deg); } }';
-            document.head.appendChild(style);
-        }
-
-        try {
-            // Utilizamos el backend local para proteger la API Key y evitar problemas de CORS
-            const response = await fetch(`/api/track?tracking_number=${encodeURIComponent(trackingInput)}`);
-            const data = await response.json();
-
-            if (!response.ok) {
-                const errorMsg = (data.meta && data.meta.message) || `Error ${response.status}`;
-                throw new Error(errorMsg);
-            }
-
-            if (data.meta && data.meta.code === 200 && data.data && data.data.length > 0) {
-                const trackData = data.data[0];
-                // ... same logic as before ...
-                // [Omitindo resto do processamento para brevidade, mantendo compatibilidade]
-                
-                // Parse status
-                const statuses = {
-                    'pending': 'Pendiente', 'notfound': 'No encontrado', 'transit': 'En tránsito',
-                    'pickup': 'Listo para recoger', 'delivered': 'Entregado', 'undelivered': 'Intento fallido',
-                    'exception': 'Excepción', 'expired': 'Expirado'
-                };
-                const statusLabel = statuses[trackData.delivery_status] || trackData.delivery_status;
-                const statusColors = {
-                    'notfound': '#6c757d', 'transit': '#007bff', 'pickup': '#17a2b8',
-                    'delivered': '#28a745', 'exception': '#dc3545'
-                };
-                const color = statusColors[trackData.delivery_status] || '#6c757d';
-
-                // Formulate route
-                const origin = trackData.origin_country || '-';
-                const dest = trackData.destination_country || '-';
-                const latestEvent = trackData.latest_event ? trackData.latest_event : null;
-                const latestTime = latestEvent ? new Date(latestEvent.time).toLocaleString() : (trackData.updated_at ? new Date(trackData.updated_at).toLocaleString() : '-');
-
-                let detailsHtml = '';
-                if (latestEvent) {
-                    detailsHtml = `<div style="font-size: 0.85em; color: #555; margin-top: 5px;">${latestEvent.description}</div>`;
+                if (data.data?.length > 0) {
+                    const item = data.data[0];
+                    const statuses = { transit: 'En tránsito', delivered: 'Entregado', pickup: 'Listo' };
+                    const status = statuses[item.delivery_status] || item.delivery_status;
+                    
+                    body.innerHTML = `<tr>
+                        <td style="padding:15px;"><strong>${item.courier_code}</strong><br>${item.tracking_number}</td>
+                        <td style="padding:15px;"><span style="font-weight:bold;">${status}</span></td>
+                        <td style="padding:15px;">${item.origin_country || '-'} &rarr; ${item.destination_country || '-'}</td>
+                        <td style="padding:15px;">${new Date(item.updated_at).toLocaleString()}</td>
+                    </tr>`;
+                    table.style.display = 'table';
+                } else {
+                    errorDiv.innerHTML = 'No se encontró el envío.';
+                    errorDiv.style.display = 'block';
                 }
-
-                trackingBody.innerHTML = `
-                    <tr style="border-bottom: 1px solid #eee;">
-                        <td style="padding: 15px;">
-                            <strong>${trackData.courier_code || 'Carrier'}</strong><br>
-                            <span style="font-size: 0.9em; color: #666;">${trackData.tracking_number}</span>
-                        </td>
-                        <td style="padding: 15px;">
-                            <span style="background-color: ${color}20; color: ${color}; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold;">
-                                • ${statusLabel}
-                            </span>
-                        </td>
-                        <td style="padding: 15px;">
-                            ${origin} &rarr; ${dest}
-                        </td>
-                        <td style="padding: 15px;">
-                            ${latestTime}
-                            ${detailsHtml}
-                        </td>
-                    </tr>
-                `;
-
-                trackingTable.style.display = 'table';
-            } else {
-                // If API returns success but no tracking, or general not found
-                errorDiv.innerHTML = `No se encontró información para el número: <strong>${trackingInput}</strong>.`;
+            } catch (err) {
+                errorDiv.innerHTML = 'Error en el rastreo.';
                 errorDiv.style.display = 'block';
+            } finally {
+                btn.disabled = false;
+                btn.innerText = 'Rastrear';
             }
-
-        } catch (error) {
-            console.error('Error fetching tracking:', error);
-            errorDiv.innerHTML = `
-                <strong>Error:</strong> ${error.message} <br>
-                <span style="font-size: 0.85em; font-weight: normal;">Verifica el número e intenta nuevamente.</span>
-            `;
-            errorDiv.style.display = 'block';
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'Rastrear';
-        }
-    });
-}
-
-
+        });
+    }
+});
