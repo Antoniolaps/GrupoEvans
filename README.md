@@ -4,7 +4,7 @@ Sitio web corporativo profesional de **Evans Logistics**, operador logístico es
 
 ## 🚀 Propósito del Proyecto
 
-Consolidar la marca digital de Grupo Evans Logistics, facilitando la generación de leads comerciales y ofreciendo herramientas de valor como el rastreo de envíos en tiempo real para sus clientes.
+Consolidar la marca digital de Grupo Evans Logistics, facilitando la generación de leads comerciales y proyectando autoridad corporativa para sus clientes.
 
 ## 🛠️ Stack Tecnológico
 
@@ -15,14 +15,14 @@ Proyecto desarrollado con enfoque en rendimiento y simplicidad (High Performance
 - **Tipografía:** Montserrat (vía Fontsource).
 - **Servicios Externos:** 
   - [Formspree](https://formspree.io/) para gestión de formularios.
-  - [TrackingMore API](https://www.trackingmore.com/) para rastreo multimodal.
+
 
 ## 📁 Estructura Principal
 
 - `index.html`: Homepage con sistema de diseño modular.
 - `pages/`: Secciones de Servicios, Nosotros, Noticias, Proveedores y Contacto.
 - `assets/`: Recursos estáticos (CSS, JS, Imágenes).
-- `api/`: Lógica de integración con servicios externos.
+
 
 ## 📄 Documentación Completa
 

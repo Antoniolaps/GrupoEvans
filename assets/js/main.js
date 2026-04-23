@@ -212,55 +212,5 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(waBtn);
     }
 
-    // --- Tracking System ---
-    const trackingForm = document.getElementById('trackingForm');
-    if (trackingForm) {
-        trackingForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const input = document.getElementById('trackingInput').value.trim();
-            const container = document.getElementById('trackingResultsContainer');
-            const table = document.getElementById('trackingTable');
-            const body = document.getElementById('trackingBody');
-            const errorDiv = document.getElementById('trackingError');
-            const btn = document.getElementById('trackingSubmitBtn');
 
-            if (!input) return;
-
-            container.style.display = 'block';
-            table.style.display = 'none';
-            errorDiv.style.display = 'none';
-            body.innerHTML = '';
-            btn.disabled = true;
-            btn.innerHTML = 'Buscando...';
-
-            try {
-                const res = await fetch(`/api/track?tracking_number=${encodeURIComponent(input)}`);
-                const data = await res.json();
-                if (!res.ok) throw new Error(data.meta?.message || 'Error');
-
-                if (data.data?.length > 0) {
-                    const item = data.data[0];
-                    const statuses = { transit: 'En tránsito', delivered: 'Entregado', pickup: 'Listo' };
-                    const status = statuses[item.delivery_status] || item.delivery_status;
-                    
-                    body.innerHTML = `<tr>
-                        <td style="padding:15px;"><strong>${item.courier_code}</strong><br>${item.tracking_number}</td>
-                        <td style="padding:15px;"><span style="font-weight:bold;">${status}</span></td>
-                        <td style="padding:15px;">${item.origin_country || '-'} &rarr; ${item.destination_country || '-'}</td>
-                        <td style="padding:15px;">${new Date(item.updated_at).toLocaleString()}</td>
-                    </tr>`;
-                    table.style.display = 'table';
-                } else {
-                    errorDiv.innerHTML = 'No se encontró el envío.';
-                    errorDiv.style.display = 'block';
-                }
-            } catch (err) {
-                errorDiv.innerHTML = 'Error en el rastreo.';
-                errorDiv.style.display = 'block';
-            } finally {
-                btn.disabled = false;
-                btn.innerText = 'Rastrear';
-            }
-        });
-    }
 });

@@ -19,7 +19,7 @@ El sitio tiene como objetivo principal:
 - **Posicionar a Grupo Evans Logistics** como el partner de confianza para empresas de alto nivel, proyectando autoridad y éxito operativo.
 - **Generar leads comerciales** a través de formularios integrados con el correo corporativo profesional.
 - **Informar y proyectar la visión estratégica** de la empresa con contenido detallado.
-- **Habilitar el rastreo de envíos** en tiempo real (API TrackingMore) para transparencia total.
+
 - **Consolidar la marca "Grupo Evans Logistics"** tras un proceso de profesionalización exhaustivo realizado en Abril 2026.
 
 ---
@@ -36,7 +36,7 @@ El proyecto es un sitio web **estático** (sin framework de frontend ni backend 
 | **Tipografía** | Google Fonts / Fontsource (Montserrat) | Fuente corporativa en todas las páginas |
 | **Tipografía display** | Google Fonts (Bebas Neue) | Años en el timeline de Historia |
 | **Control de versiones** | Git | Historial de cambios (`.git/`) |
-| **API de tracking** | TrackingMore REST API | Rastreo de envíos (`/api/track.js`) |
+
 | **Formularios** | Formspree | Envío de mensajes de contacto sin backend |
 | **Hosting** | Estático (ver sección 6) | Servido desde cualquier CDN/servidor estático |
 
@@ -55,9 +55,7 @@ Evans2/
 ├── redmen.md                           # Notas de desarrollo internas
 ├── fix_links.ps1                       # Script PowerShell para normalizar rutas de enlaces
 │
-├── api/
-│   └── track.js                        # Proxy seguro para la API de TrackingMore
-│
+
 ├── assets/
 │   ├── css/
 │   │   ├── styles.css                  # Sistema de diseño principal (31 KB)
@@ -146,15 +144,6 @@ Script JavaScript compartido cargado en todas las páginas. Contiene:
 - **Contadores animados** — Incremento numérico al entrar al viewport
 - **Form submission** — Manejo asíncrono con Fetch API hacia Formspree, estados de loading/success/error
 
-### 4.5 `api/track.js`
-**Proxy de backend seguro** para la API de TrackingMore. Su función es:
-1. Recibir la petición del frontend (`/api/tracking?trackingNumber=&carrier=`)
-2. Añadir el **API Key privado** de TrackingMore en el header `Authorization`
-3. Enviar la petición a `api.trackingmore.com` desde el servidor
-4. Devolver la respuesta JSON al frontend
-
-> El API Key nunca se expone en el navegador. Sin este proxy, la clave quedaría visible en el código fuente del cliente.
-
 ### 4.6 `pages/contacto.html` — Contacto
 - **Hero** con propuesta de valor de contacto directo.
 - **Banda de promesas** — 4 compromisos: respuesta <4h, cobertura global, cotización gratuita y seguridad.
@@ -205,7 +194,7 @@ Script de PowerShell para buscar y corregir rutas relativas rotas en todos los a
 | Contadores animados | JS requestAnimationFrame | `index.html` |
 | Carrusel infinito de logos | CSS `@keyframes` + JS clone | `index.html` |
 | Tabs interactivos | JS show/hide panels | `logistica-internacional.html` |
-| Tracker de envíos | Fetch API → TrackingMore proxy | `logistica-internacional.html` |
+
 | FAQ acordeón | JS max-height toggle | `contacto.html`, `index.html` |
 | Formulario con estados | Fetch + Formspree + DOM states | `contacto.html` |
 | Indicador horario en vivo | `new Date()` + DOM update | `contacto.html` |
@@ -235,12 +224,8 @@ Script de PowerShell para buscar y corregir rutas relativas rotas en todos los a
            ┌────────────┴────────────┐
            │                         │
            ▼                         ▼
-   Archivos Estáticos         Backend / Proxy
-   (HTML + CSS + JS)          (api/track.js)
-                                    │
-                                    ▼
-                         API TrackingMore
-                         (trackingmore.com)
+   Archivos Estáticos         Backend / Formularios
+   (HTML + CSS + JS)          (Formspree)
 ```
 
 ### 6.2 Hosting: Hostinger
@@ -253,15 +238,7 @@ El sitio está optimizado para funcionar en **Hostinger**, aprovechando su panel
    - Opción A: **Git Integration** (Recomendado). Conecta tu repositorio de GitHub directamente desde el panel de Hostinger.
    - Opción B: **Administrador de Archivos**. Sube el contenido de la carpeta raíz directamente a `public_html`.
 
-2. **Configuración de Node.js (para el Tracker):**
-   - Hostinger permite habilitar una aplicación Node.js desde el panel. 
-   - Asegúrate de apuntar el "Application Root" a la carpeta `api/` y configurar el script de inicio si es necesario.
-
-3. **Variables de entorno:**
-   - En el hPanel, ve a **Avanzado → Variables de Entorno** (o mediante un archivo `.env` si usas VPS).
-   - Registra la clave: `TRACKINGMORE_API_KEY = tu_clave_aqui`.
-
-4. **Formulario de contacto:**
+2. **Formulario de contacto:**
    - Formspree ya está configurado en el código. Solo asegúrate de que el dominio `evansslogistics.com` esté verificado en tu cuenta de formspree.io para recibir los correos.
 
 ### 6.3 Configuración de Dominio
@@ -275,7 +252,7 @@ En Hostinger:
 
 | Variable | Descripción | Dónde se usa |
 |----------|-------------|---------------|
-| `TRACKINGMORE_API_KEY` | Clave API de TrackingMore | `api/track.js` |
+
 | *(Formspree)* | Email de destino configurado en HTML | `contacto.html` |
 
 ### 6.5 Rendimiento y Caché
@@ -292,7 +269,7 @@ En Hostinger:
 - [x] **Liderazgo Jennifer Evans Small**: Referencias actualizadas para reflejar el liderazgo real de la empresa.
 - [x] **Correo Corporativo**: Email `jennifer.evans@grupoevanslogistics.com` configurado en todos los archivos HTML.
 - [ ] Comprimir imágenes pesadas (>150KB) en `/assets/img/`.
-- [ ] Configurar `TRACKINGMORE_API_KEY` como variable de entorno en el hosting (Netlify/Vercel).
+
 - [ ] Verificar registros DNS finales para el dominio corporativo.
 
 ---
